@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,60 @@
         /* --- IMPORT FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+        /* =====================================================
+           LIGHT / DARK THEME VARIABLES
+        ====================================================== */
+        :root,
+        [data-theme="dark"] {
+            --bg-body:         #1a1d29;
+            --bg-card:         #242b3b;
+            --bg-deep:         #151922;
+            --bg-controls:     #1a1d29;
+            --text-main:       #ffffff;
+            --text-muted:      #aaaaaa;
+            --text-req:        #888888;
+            --border-subtle:   rgba(255,255,255,0.1);
+            --border-card:     #333333;
+            --nav-bg:          rgba(26,29,41,0.7);
+            --drawer-bg:       #151922;
+            --overlay-bg:      rgba(26,29,41,0.4);
+            --meter-bg:        #333333;
+            --input-bg:        #151922;
+            --input-border:    #333333;
+            --generated-bg:    #151922;
+            /* contact form */
+            --cf-wrap-bg:      #1e2333;
+            --cf-input-bg:     #262d40;
+            --cf-input-hover:  #2c3450;
+            --cf-placeholder:  #6a7190;
+            --cf-text:         #e0e0e0;
+        }
+
+        [data-theme="light"] {
+            --bg-body:         #f0f4ff;
+            --bg-card:         #ffffff;
+            --bg-deep:         #e8edf8;
+            --bg-controls:     #f0f4ff;
+            --text-main:       #111827;
+            --text-muted:      #4b5563;
+            --text-req:        #6b7280;
+            --border-subtle:   rgba(0,0,0,0.08);
+            --border-card:     #d1d9f0;
+            --nav-bg:          rgba(240,244,255,0.88);
+            --drawer-bg:       #ffffff;
+            --overlay-bg:      rgba(180,200,240,0.45);
+            --meter-bg:        #d1d9f0;
+            --input-bg:        #e8edf8;
+            --input-border:    #c5cfea;
+            --generated-bg:    #e8edf8;
+            /* contact form */
+            --cf-wrap-bg:      #ffffff;
+            --cf-input-bg:     #eef1fb;
+            --cf-input-hover:  #e2e7f8;
+            --cf-placeholder:  #9ca3af;
+            --cf-text:         #111827;
+        }
 
         /* --- GLOBAL STYLES --- */
         * {
@@ -19,8 +73,8 @@
         }
 
         body {
-            background-color: #1a1d29;
-            color: #ffffff;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,6 +84,7 @@
             padding-left: 1rem;
             padding-right: 1rem;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         /* --- 1. GLASSMORPHIC NAVBAR --- */
@@ -44,10 +99,11 @@
             align-items: center;
             padding: 0 50px;
             z-index: 1000;
-            background: rgba(26, 29, 41, 0.7);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
 
         .nav-logo {
@@ -55,12 +111,67 @@
             font-weight: 700;
             font-size: 1.5rem;
             letter-spacing: 1px;
-            color: #ffffff;
+            color: var(--text-main);
             white-space: nowrap;
+            transition: color 0.5s ease;
         }
 
-        .nav-logo span.cyan { font-family: 'Poppins', sans-serif; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+        .nav-logo span.cyan    { font-family: 'Poppins', sans-serif; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
         .nav-logo span.magenta { font-family: 'Poppins', sans-serif; color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+
+        /* nav right — holds toggle + burger */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* --- THEME TOGGLE SWITCH --- */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .theme-icon { font-size: 1.1rem; }
+
+        .toggle-track {
+            position: relative;
+            width: 52px;
+            height: 28px;
+            background: linear-gradient(135deg, #0d1b2a, #1a1d29);
+            border-radius: 50px;
+            border: 2px solid rgba(0,243,255,0.45);
+            box-shadow: 0 0 8px rgba(0,243,255,0.2);
+            transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        [data-theme="light"] .toggle-track {
+            background: linear-gradient(135deg, #b8d4ff, #dce9ff);
+            border-color: rgba(0,100,200,0.3);
+            box-shadow: 0 0 8px rgba(0,100,200,0.2);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00f3ff;
+            box-shadow: 0 0 8px #00f3ff;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                        background 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        [data-theme="light"] .toggle-thumb {
+            transform: translateX(24px);
+            background: #f59e0b;
+            box-shadow: 0 0 8px #f59e0b;
+        }
 
         /* --- BURGER ICON --- */
         .menu-icon {
@@ -74,19 +185,17 @@
         .bar {
             width: 30px;
             height: 3px;
-            background-color: #fff;
-            transition: 0.4s;
+            background-color: var(--text-main);
+            transition: background-color 0.5s ease, transform 0.4s ease;
             border-radius: 2px;
         }
 
         /* --- BACKGROUND BLUR OVERLAY --- */
         .page-blur-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(26, 29, 41, 0.4);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--overlay-bg);
             backdrop-filter: blur(12px);
             z-index: 998;
             opacity: 0;
@@ -94,10 +203,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .page-blur-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .page-blur-overlay.active { opacity: 1; pointer-events: all; }
 
         /* --- THE SIDE DRAWER NAV --- */
         .nav-drawer {
@@ -106,13 +212,13 @@
             right: -250px;
             width: 250px;
             height: 100vh;
-            background-color: #151922;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+            background-color: var(--drawer-bg);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.5);
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             z-index: 1005;
-            transition: right 0.4s ease;
+            transition: right 0.4s ease, background-color 0.5s ease;
         }
 
         .nav-drawer.active { right: 0; }
@@ -123,7 +229,7 @@
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 300;
-            color: #aaaaaa;
+            color: var(--text-muted);
             cursor: pointer;
             line-height: 0.5;
             transition: color 0.3s ease;
@@ -133,13 +239,13 @@
 
         .nav-drawer a {
             text-decoration: none;
-            color: #ffffff;
+            color: var(--text-main);
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 400;
             text-align: left;
             padding: 15px 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
             transition: color 0.3s ease, padding-left 0.3s ease;
         }
 
@@ -158,20 +264,21 @@
         }
 
         .welcome-box {
-            background-color: #242b3b;
+            background-color: var(--bg-card);
             padding: 2.5rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             max-width: 900px;
             width: 100%;
             overflow: hidden;
+            transition: background-color 0.5s ease;
         }
 
         .line-1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             color: #00f3ff;
-            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.6);
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0,243,255,0.6);
             display: block;
             text-align: center;
             margin-bottom: 15px;
@@ -184,23 +291,24 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1.3rem;
             line-height: 1.6;
-            color: #aaaaaa;
+            color: var(--text-muted);
             text-align: center;
             opacity: 0;
             transform: translateX(-100px);
             animation: slideInLeft 2s ease forwards;
+            transition: color 0.5s ease;
         }
 
-        @keyframes slideInRight { 0% { opacity: 0; transform: translateX(100%); } 100% { opacity: 1; transform: translateX(0); } }
-        @keyframes slideInLeft { 0% { opacity: 0; transform: translateX(-100%); } 100% { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { 0%{opacity:0;transform:translateX(100%)} 100%{opacity:1;transform:translateX(0)} }
+        @keyframes slideInLeft  { 0%{opacity:0;transform:translateX(-100%)} 100%{opacity:1;transform:translateX(0)} }
 
-        .hl-cyan { color: #00f3ff; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
-        .hl-magenta { color: #ff00ff; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
-        .hl-red { color: #ff0055; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(255, 0, 85, 0.3); }
+        .hl-cyan    { color: #00f3ff; font-weight:600; font-family:'Poppins',sans-serif; text-shadow:0 0 10px rgba(0,243,255,0.3); }
+        .hl-magenta { color: #ff00ff; font-weight:600; font-family:'Poppins',sans-serif; text-shadow:0 0 10px rgba(255,0,255,0.3); }
+        .hl-red     { color: #ff0055; font-weight:600; font-family:'Poppins',sans-serif; text-shadow:0 0 10px rgba(255,0,85,0.3);  }
 
         /* --- 3. THE CHECKER ENGINE --- */
         .engine-container {
-            background-color: #242b3b;
+            background-color: var(--bg-card);
             padding: 2rem;
             border-radius: 15px;
             width: 100%;
@@ -208,6 +316,7 @@
             text-align: center;
             margin-bottom: 2rem;
             animation: glowingShadowColors 8s infinite alternate linear;
+            transition: background-color 0.5s ease;
         }
 
         @keyframes glowingShadowColors {
@@ -223,37 +332,44 @@
             width: 100%;
             padding: 15px;
             padding-right: 45px;
-            background-color: #151922;
-            border: 2px solid #333;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
             border-radius: 8px;
             color: #00f3ff;
             font-size: 1.1rem;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, background-color 0.5s ease;
         }
 
-        input:focus { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+        input:focus { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255,0,255,0.3); }
 
         .toggle-password {
             position: absolute;
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            cursor: pointer;
+                       cursor: pointer;
             font-size: 1.2rem;
             opacity: 0.7;
             transition: opacity 0.3s ease;
         }
         .toggle-password:hover { opacity: 1; }
 
-        .strength-meter { height: 10px; background-color: #333; border-radius: 5px; margin-bottom: 0.5rem; overflow: hidden; }
+        .strength-meter {
+            height: 10px;
+            background-color: var(--meter-bg);
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
         .meter-fill { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; box-shadow: 0 0 10px currentColor; }
 
         .status-text { font-weight: bold; margin-bottom: 5px; min-height: 1.2em; }
-        .crack-time-text { color: #aaaaaa; font-size: 0.85rem; margin-bottom: 10px; font-family: 'Poppins', sans-serif; }
+        .crack-time-text { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px; font-family: 'Poppins', sans-serif; transition: color 0.5s ease; }
         .pwned-warning { color: #ff0055; font-size: 0.9rem; margin-bottom: 15px; min-height: 1.2em; }
 
-        .requirements { text-align: left; list-style: none; font-size: 0.9rem; color: #888; }
+        .requirements { text-align: left; list-style: none; font-size: 0.9rem; color: var(--text-req); transition: color 0.5s ease; }
         .requirements li { margin-bottom: 5px; transition: color 0.3s ease; }
         .requirements li::before { content: "• "; }
         .valid { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
@@ -261,33 +377,36 @@
 
         /* --- 4. THE GENERATOR ENGINE --- */
         .generator-container {
-            background-color: #242b3b;
+            background-color: var(--bg-card);
             padding: 1.5rem;
             border-radius: 15px;
             width: 100%;
             max-width: 450px;
             text-align: center;
             border: 1px solid #00f3ff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             margin-bottom: 6rem;
+            transition: background-color 0.5s ease;
         }
 
         .generator-container h3 {
             font-family: 'Poppins', sans-serif;
-            color: #ffffff;
+            color: var(--text-main);
             font-size: 1.1rem;
             margin-bottom: 15px;
+            transition: color 0.5s ease;
         }
 
         .generator-controls {
-            background-color: #1a1d29;
+            background-color: var(--bg-controls);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
             text-align: left;
             font-family: 'Poppins', sans-serif;
             font-size: 0.9rem;
-            color: #e0e0e0;
+            color: var(--text-main);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .slider-group {
@@ -304,10 +423,7 @@
             padding: 0;
         }
 
-        .checkbox-group {
-            display: flex;
-            justify-content: space-around;
-        }
+        .checkbox-group { display: flex; justify-content: space-around; }
 
         .checkbox-group label {
             cursor: pointer;
@@ -315,16 +431,17 @@
             align-items: center;
             gap: 5px;
         }
+
         .checkbox-group input[type="checkbox"] {
             accent-color: #ff00ff;
             width: 16px;
         }
 
         .generated-display {
-            background-color: #151922;
+            background-color: var(--generated-bg);
             padding: 15px;
             border-radius: 8px;
-            border: 1px dashed #aaaaaa;
+            border: 1px dashed var(--text-muted);
             color: #ff00ff;
             font-size: 1.2rem;
             font-weight: bold;
@@ -334,13 +451,10 @@
             align-items: center;
             justify-content: center;
             word-break: break-all;
+            transition: background-color 0.5s ease;
         }
 
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
+        .button-group { display: flex; justify-content: center; gap: 15px; }
 
         .action-btn {
             background-color: transparent;
@@ -371,31 +485,31 @@
         }
 
         .cyber-card {
-            background-color: #242b3b;
-            border: 1px solid #333;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
             border-radius: 20px;
             padding: 2.5rem 2rem;
             width: 100%;
             max-width: 350px;
             text-align: center;
-            color: #fff;
-            transition: all 0.4s ease;
+            color: var(--text-main);
+            transition: all 0.4s ease, background-color 0.5s ease;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .cyber-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), 0 0 15px rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0,243,255,0.4), 0 0 15px rgba(255,0,255,0.2);
             border-color: #00f3ff;
         }
 
-        .cyber-card h2 { color: #ffffff; margin: 15px 0; font-size: 1.8rem; font-weight: bold; }
-        .cyber-card p { color: #aaaaaa; line-height: 1.6; font-size: 1rem; }
-        .icon-glow { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 0 0 15px #00f3ff; }
+        .cyber-card h2 { color: var(--text-main); margin: 15px 0; font-size: 1.8rem; font-weight: bold; transition: color 0.5s ease; }
+        .cyber-card p  { color: var(--text-muted); line-height: 1.6; font-size: 1rem; transition: color 0.5s ease; }
+        .icon-glow     { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 0 0 15px #00f3ff; }
 
         /* =====================================================
-           --- 6. ABOUT / CONTACT SECTION ---
+           6. CONTACT / ABOUT SECTION
         ====================================================== */
         .about-section {
             width: 100%;
@@ -407,7 +521,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
             color: #00f3ff;
-            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.4);
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0,243,255,0.4);
             text-align: center;
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
@@ -416,76 +530,70 @@
         .about-section-subtitle {
             font-family: 'Poppins', sans-serif;
             font-size: 0.95rem;
-            color: #777;
+            color: var(--text-muted);
             text-align: center;
             margin-bottom: 2rem;
+            transition: color 0.5s ease;
         }
 
         .contact-form-wrapper {
-            background-color: #1e2333;
+            background-color: var(--cf-wrap-bg);
             border-radius: 20px;
             padding: 2rem 1.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 243, 255, 0.05);
-            transition: box-shadow 0.4s ease;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+            transition: background-color 0.5s ease, box-shadow 0.4s ease;
         }
 
         .contact-form-wrapper:hover {
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 243, 255, 0.08);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,243,255,0.07);
         }
 
-        /* Contact input fields — matching the screenshot style */
-        .contact-input-group {
-            margin-bottom: 1.2rem;
-            position: relative;
-        }
+        .contact-input-group { margin-bottom: 1.2rem; }
 
         .contact-input,
         .contact-textarea {
             width: 100%;
             padding: 20px 18px;
-            background-color: #262d40;
+            background-color: var(--cf-input-bg);
             border: 2px solid transparent;
             border-radius: 14px;
-            color: #e0e0e0;
+            color: var(--cf-text);
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
             outline: none;
-            transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
             resize: none;
+            transition: border-color 0.35s ease, background-color 0.35s ease,
+                        box-shadow 0.35s ease, transform 0.25s ease, color 0.5s ease;
         }
 
         .contact-input::placeholder,
         .contact-textarea::placeholder {
-            color: #6a7190;
+            color: var(--cf-placeholder);
             font-size: 1rem;
         }
 
         .contact-input:hover,
         .contact-textarea:hover {
-            background-color: #2c3450;
-            border-color: rgba(0, 243, 255, 0.2);
+            background-color: var(--cf-input-hover);
+            border-color: rgba(0,243,255,0.25);
             transform: translateY(-2px);
         }
 
         .contact-input:focus,
         .contact-textarea:focus {
-            background-color: #2c3450;
+            background-color: var(--cf-input-hover);
             border-color: #00f3ff;
-            box-shadow: 0 0 0 4px rgba(0, 243, 255, 0.1), 0 4px 20px rgba(0, 243, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(0,243,255,0.1), 0 4px 20px rgba(0,243,255,0.12);
             transform: translateY(-2px);
         }
 
-        .contact-textarea {
-            height: 130px;
-            padding-top: 18px;
-        }
+        .contact-textarea { height: 130px; padding-top: 18px; }
 
-        /* Submit button */
         .contact-submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(255, 0, 255, 0.1));
+            background: linear-gradient(135deg, rgba(0,243,255,0.12), rgba(255,0,255,0.08));
             border: 2px solid #00f3ff;
             border-radius: 14px;
             color: #00f3ff;
@@ -505,27 +613,21 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0,243,255,0.15), transparent);
             transition: left 0.5s ease;
         }
 
-        .contact-submit-btn:hover::before {
-            left: 100%;
-        }
+        .contact-submit-btn:hover::before { left: 100%; }
 
         .contact-submit-btn:hover {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(255, 0, 255, 0.15));
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4), 0 0 40px rgba(0, 243, 255, 0.15);
+            background: linear-gradient(135deg, rgba(0,243,255,0.25), rgba(255,0,255,0.15));
+            box-shadow: 0 0 20px rgba(0,243,255,0.4), 0 0 40px rgba(0,243,255,0.12);
             transform: translateY(-2px);
             color: #fff;
         }
 
-        .contact-submit-btn:active {
-            transform: translateY(0px);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
+        .contact-submit-btn:active { transform: translateY(0); }
 
-        /* Success / error feedback message */
         .form-feedback {
             margin-top: 1rem;
             padding: 12px 16px;
@@ -534,54 +636,57 @@
             font-size: 0.9rem;
             text-align: center;
             display: none;
-            transition: all 0.3s ease;
         }
 
-        .form-feedback.success {
-            background-color: rgba(0, 243, 255, 0.1);
-            border: 1px solid #00f3ff;
-            color: #00f3ff;
-            display: block;
-        }
+        .form-feedback.success { background: rgba(0,243,255,0.1); border: 1px solid #00f3ff; color: #00f3ff; display: block; }
+        .form-feedback.error   { background: rgba(255,0,85,0.1);   border: 1px solid #ff0055; color: #ff0055; display: block; }
 
-        .form-feedback.error {
-            background-color: rgba(255, 0, 85, 0.1);
-            border: 1px solid #ff0055;
-            color: #ff0055;
-            display: block;
-        }
-
-        /* =====================================================
-           RESPONSIVE
-        ====================================================== */
+        /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
-            .glass-nav { padding: 0 20px; }
-            .nav-logo { font-size: 1.2rem; }
-            .line-1 { font-size: 2rem; }
-            .line-2 { font-size: 1rem; }
-            .about-section-title { font-size: 1.5rem; }
+            .glass-nav  { padding: 0 16px; }
+            .nav-logo   { font-size: 1.1rem; }
+            .line-1     { font-size: 2rem; }
+            .line-2     { font-size: 1rem; }
+            .about-section-title  { font-size: 1.5rem; }
             .contact-form-wrapper { padding: 1.5rem 1.2rem; }
+            .theme-icon { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav class="glass-nav">
         <div class="nav-logo"><span class="cyan">GROUP 4</span> <span class="magenta">PROJECT</span></div>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+
+        <div class="nav-right">
+            <!-- LIGHT / DARK TOGGLE -->
+            <div class="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark mode">
+                <span class="theme-icon">🌙</span>
+                <div class="toggle-track">
+                    <div class="toggle-thumb"></div>
+                </div>
+                <span class="theme-icon">☀️</span>
+            </div>
+
+            <!-- BURGER -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
         </div>
     </nav>
+
     <div class="page-blur-overlay" id="blurOverlay" onclick="toggleMenu()"></div>
+
     <div class="nav-drawer" id="navDrawer">
         <div class="drawer-header"><div class="close-btn" onclick="toggleMenu()">&times;</div></div>
-        <a href="#" onclick="toggleMenu()">Home</a>
-        <a href="#engine" onclick="toggleMenu()">Checker</a>
-        <a href="#journey" onclick="toggleMenu()">Cards</a>
-        <a href="#about" onclick="toggleMenu()">About</a>
+        <a href="#"        onclick="toggleMenu()">Home</a>
+        <a href="#engine"  onclick="toggleMenu()">Checker</a>
+        <a href="#journey" onclick="toggleMenu()">About</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
     </div>
 
-    <!-- WELCOME -->
+    <!-- WELCOME BOX -->
     <div class="header-section">
         <div class="welcome-box">
             <div class="line-1">Welcome,</div>
@@ -601,21 +706,18 @@
         </div>
 
         <div class="strength-meter"><div class="meter-fill" id="meterFill"></div></div>
-        
         <p id="strengthText" class="status-text">Strength: None</p>
-
         <p id="crackTimeText" class="crack-time-text">Time to crack: 0 seconds</p>
-
         <p id="pwnedText" class="pwned-warning"></p>
+
         <ul class="requirements">
             <li id="req-length">At least 8 characters</li>
             <li id="req-number">Contains a number (0-9)</li>
             <li id="req-symbol">Contains a symbol (!@#$)</li>
-            <li id="req-case">Uppercase & Lowercase</li>
+            <li id="req-case">Uppercase &amp; Lowercase</li>
         </ul>
     </div>
-
-    <!-- GENERATOR ENGINE -->
+      <!-- GENERATOR ENGINE -->
     <div class="generator-container">
         <h3>Generate a Secure Passphrase</h3>
 
@@ -657,76 +759,59 @@
         </div>
     </div>
 
-    <!-- =====================================================
-         ABOUT / CONTACT SECTION
-    ====================================================== -->
-    <section id="about" class="about-section">
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="about-section">
         <h2 class="about-section-title">Contact Us</h2>
         <p class="about-section-subtitle">Have a question or feedback? Drop us a message.</p>
 
-        <!-- 
-            FORMSPREE LINK: Replace YOUR_FORMSPREE_LINK below with your actual Formspree endpoint.
-            Example: https://formspree.io/f/xabcdefg
-        -->
         <div class="contact-form-wrapper">
             <form id="contactForm" action="https://formspree.io/f/mblnekvp" method="POST" onsubmit="handleFormSubmit(event)">
 
                 <div class="contact-input-group">
-                    <input
-                        type="email"
-                        name="email"
-                        class="contact-input"
-                        placeholder="Email Address"
-                        required
-                    />
+                    <input type="email" name="email" class="contact-input"
+                           placeholder="Email Address" required />
                 </div>
 
                 <div class="contact-input-group">
-                    <input
-                        type="tel"
-                        name="phone"
-                        class="contact-input"
-                        placeholder="Mobile Number (Optional)"
-                    />
+                    <input type="tel" name="phone" class="contact-input"
+                           placeholder="Mobile Number (Optional)" />
                 </div>
 
                 <div class="contact-input-group">
-                    <input
-                        type="text"
-                        name="_subject"
-                        class="contact-input"
-                        placeholder="Email Subject"
-                        required
-                    />
+                    <input type="text" name="_subject" class="contact-input"
+                           placeholder="Email Subject" required />
                 </div>
 
                 <div class="contact-input-group">
-                    <textarea
-                        name="message"
-                        class="contact-textarea"
-                        placeholder="Your Message"
-                        required
-                    ></textarea>
+                    <textarea name="message" class="contact-textarea"
+                              placeholder="Your Message" required></textarea>
                 </div>
 
                 <button type="submit" class="contact-submit-btn">Send Message</button>
-
                 <div id="formFeedback" class="form-feedback"></div>
             </form>
         </div>
     </section>
 
     <script>
+        /* --- THEME TOGGLE --- */
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme',
+                html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
         /* --- NAV LOGIC --- */
         function toggleMenu() {
             document.getElementById('blurOverlay').classList.toggle('active');
             document.getElementById('navDrawer').classList.toggle('active');
         }
 
-        /* --- SHOW/HIDE PASSWORD LOGIC --- */
+        /* --- FEATURE 5: SHOW/HIDE PASSWORD LOGIC --- */
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('passwordInput');
             const icon = document.getElementById('toggleIcon');
+
             if (pwdInput.type === "password") {
                 pwdInput.type = "text";
                 icon.innerText = "🙈";
@@ -736,46 +821,187 @@
             }
         }
 
-        /* --- SLIDER LABEL --- */
+        /* --- FEATURE 3: UPDATE SLIDER LABEL LOGIC --- */
         function updateSliderLabel() {
-            document.getElementById('wordCountLabel').innerText =
-                document.getElementById('wordCountSlider').value;
+            const sliderValue = document.getElementById('wordCountSlider').value;
+            document.getElementById('wordCountLabel').innerText = sliderValue;
         }
 
         /* --- GENERATOR ENGINE LOGIC --- */
         function generatePassphrase() {
-            const words = ["cyber","phantom","shield","matrix","nexus","quantum","stealth",
-                           "cipher","dragon","rocket","nebula","laser","galaxy","pulse",
-                           "wire","hacker","system","code","proxy"];
-            const symbols = ["!","@","#","$","%","*","^","&"];
+            const words = ["cyber", "phantom", "shield", "matrix", "nexus", "quantum", "stealth", "cipher", "dragon", "rocket", "nebula", "laser", "galaxy", "pulse", "wire", "hacker", "system", "code", "proxy"];
+            const symbols = ["!", "@", "#", "$", "%", "*", "^", "&"];
 
             const wordCount = document.getElementById('wordCountSlider').value;
-            const incNum    = document.getElementById('includeNum').checked;
-            const incSym    = document.getElementById('includeSym').checked;
+            const incNum = document.getElementById('includeNum').checked;
+            const incSym = document.getElementById('includeSym').checked;
 
             let selectedWords = [];
+
             for (let i = 0; i < wordCount; i++) {
                 let w = words[Math.floor(Math.random() * words.length)];
-                if (i === 0) w = w.charAt(0).toUpperCase() + w.slice(1);
+                if (i === 0) {
+                    w = w.charAt(0).toUpperCase() + w.slice(1);
+                }
                 selectedWords.push(w);
             }
 
             let newPassword = selectedWords.join('-');
-            if (incNum) newPassword += (Math.floor(Math.random() * 99) + 1);
-            if (incSym) newPassword += symbols[Math.floor(Math.random() * symbols.length)];
+
+            if (incNum) {
+                newPassword += (Math.floor(Math.random() * 99) + 1);
+            }
+
+            if (incSym) {
+                newPassword += symbols[Math.floor(Math.random() * symbols.length)];
+            }
 
             document.getElementById('generatedDisplay').innerText = newPassword;
-            const copyBtn = document.getElementById('copyBtn');
-            copyBtn.style.display = 'inline-block';
+            document.getElementById('copyBtn').style.display = 'block';
         }
 
+        /* --- COPY TO CLIPBOARD LOGIC --- */
         function copyToClipboard() {
-            const text = document.getElementById('generatedDisplay').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.getElementById('copyBtn');
-                btn.innerText = 'Copied!';
-                setTimeout(() => { btn.innerText = 'Copy'; }, 2000);
+            const textToCopy = document.getElementById('generatedDisplay').innerText;
+            const copyBtn = document.getElementById('copyBtn');
+
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                copyBtn.innerText = "Copied!";
+                setTimeout(function() { copyBtn.innerText = "Copy"; }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
             });
+        }
+
+        /* --- FEATURE 2: CRACK TIME MATH LOGIC --- */
+        function calculateCrackTime(password) {
+            const crackTimeText = document.getElementById('crackTimeText');
+
+            if (password.length === 0) {
+                crackTimeText.innerText = "Time to crack: 0 seconds";
+                crackTimeText.style.color = "#aaaaaa";
+                return;
+            }
+
+            let charsetSize = 0;
+            if (/[a-z]/.test(password)) charsetSize += 26;
+            if (/[A-Z]/.test(password)) charsetSize += 26;
+            if (/\d/.test(password)) charsetSize += 10;
+            if (/[^A-Za-z0-9]/.test(password)) charsetSize += 32;
+
+            let combinations = Math.pow(charsetSize, password.length);
+            let guessesPerSecond = 100000000000;
+            let secondsToCrack = combinations / guessesPerSecond;
+
+            if (secondsToCrack < 1) {
+                crackTimeText.innerText = "Time to crack: Instantly 💀";
+                crackTimeText.style.color = "#ff0055";
+            } else if (secondsToCrack < 60) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack)} seconds`;
+                crackTimeText.style.color = "#ffaa00";
+            } else if (secondsToCrack < 3600) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 60)} minutes`;
+                crackTimeText.style.color = "#ffaa00";
+            } else if (secondsToCrack < 86400) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 3600)} hours`;
+                crackTimeText.style.color = "#ffff00";
+            } else if (secondsToCrack < 31536000) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 86400)} days`;
+                crackTimeText.style.color = "#00f3ff";
+            } else {
+                let years = secondsToCrack / 31536000;
+                if (years > 1000000) {
+                    crackTimeText.innerText = "Time to crack: Millions of years 🛡️";
+                } else {
+                    crackTimeText.innerText = `Time to crack: ${Math.round(years).toLocaleString()} years`;
+                }
+                crackTimeText.style.color = "#00f3ff";
+            }
+        }
+
+        /* --- CHECKER ENGINE LOGIC --- */
+        const passwordInput = document.getElementById('passwordInput');
+        const meterFill = document.getElementById('meterFill');
+        const strengthText = document.getElementById('strengthText');
+        const pwnedText = document.getElementById('pwnedText');
+        const reqs = {
+            length: document.getElementById('req-length'),
+            number: document.getElementById('req-number'),
+            symbol: document.getElementById('req-symbol'),
+            case:   document.getElementById('req-case')
+        };
+
+        let typingTimer;
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+
+            checkComposition(password);
+            calculateCrackTime(password);
+
+            clearTimeout(typingTimer);
+            pwnedText.innerText = "Checking database...";
+            pwnedText.style.color = "#888";
+
+            if (password.length > 0) {
+                typingTimer = setTimeout(() => checkPwnedStatus(password), 500);
+            } else {
+                pwnedText.innerText = "";
+            }
+        });
+
+        function checkComposition(password) {
+            let score = 0;
+            if (password.length >= 8)                              { reqs.length.classList.add('valid'); score++; } else reqs.length.classList.remove('valid');
+            if (/\d/.test(password))                               { reqs.number.classList.add('valid'); score++; } else reqs.number.classList.remove('valid');
+            if (/[^A-Za-z0-9]/.test(password))                    { reqs.symbol.classList.add('valid'); score++; } else reqs.symbol.classList.remove('valid');
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) { reqs.case.classList.add('valid');   score++; } else reqs.case.classList.remove('valid');
+            updateMeter(score, false);
+        }
+
+        async function checkPwnedStatus(password) {
+            const buffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(password));
+            const hashArray = Array.from(new Uint8Array(buffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const prefix = hashHex.slice(0, 5);
+            const suffix = hashHex.slice(5);
+            try {
+                const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`);
+                const data = await response.text();
+                const regex = new RegExp(`^${suffix}:([0-9]+)`, 'm');
+                const match = data.match(regex);
+                if (match) {
+                    const count = parseInt(match[1]).toLocaleString();
+                    pwnedText.innerText = `⚠️ DANGER: Found in ${count} data breaches!`;
+                    pwnedText.style.color = "#ff0055";
+                    updateMeter(0, true);
+                } else {
+                    pwnedText.innerText = "✅ Not found in known breaches.";
+                    pwnedText.style.color = "#00f3ff";
+                }
+            } catch (error) {
+                pwnedText.innerText = "Error checking database.";
+            }
+        }
+
+        function updateMeter(score, isPwned) {
+            if (isPwned) {
+                meterFill.style.width = '100%';
+                meterFill.style.backgroundColor = '#ff0055';
+                strengthText.innerText = "Strength: COMPROMISED";
+                strengthText.style.color = '#ff0055';
+                return;
+            }
+            let width = '0%', color = 'red', text = 'Weak';
+            if (score == 1) { width = '25%';  color = '#ff0055'; text = 'Weak';        }
+            else if (score == 2) { width = '50%';  color = '#ffaa00'; text = 'Medium';      }
+            else if (score == 3) { width = '75%';  color = '#ffff00'; text = 'Strong';      }
+            else if (score == 4) { width = '100%'; color = '#00f3ff'; text = 'Unbreakable'; }
+            meterFill.style.width = width;
+            meterFill.style.backgroundColor = color;
+            meterFill.style.boxShadow = `0 0 10px ${color}`;
+            strengthText.innerText = `Strength: ${text}`;
+            strengthText.style.color = color;
         }
 
         /* --- CONTACT FORM HANDLER --- */
@@ -785,9 +1011,9 @@
             const feedback = document.getElementById('formFeedback');
             const btn      = form.querySelector('.contact-submit-btn');
 
-            btn.innerText  = 'Sending...';
-            btn.disabled   = true;
-            feedback.className = 'form-feedback';
+            btn.innerText = 'Sending…';
+            btn.disabled  = true;
+            feedback.className   = 'form-feedback';
             feedback.style.display = 'none';
 
             try {
@@ -798,15 +1024,15 @@
                 });
 
                 if (response.ok) {
-                    feedback.className    = 'form-feedback success';
-                    feedback.innerText    = '✅ Message sent successfully! We\'ll get back to you soon.';
+                    feedback.className = 'form-feedback success';
+                    feedback.innerText = "✅ Message sent! We'll get back to you soon.";
                     form.reset();
                 } else {
-                    throw new Error('Server error');
+                    throw new Error('server');
                 }
-            } catch (err) {
+            } catch {
                 feedback.className = 'form-feedback error';
-                feedback.innerText = '❌ Something went wrong. Please try again or check your Formspree link.';
+                feedback.innerText = '❌ Something went wrong. Please try again.';
             } finally {
                 btn.innerText = 'Send Message';
                 btn.disabled  = false;
@@ -814,6 +1040,5 @@
         }
     </script>
 </body>
-                    </html>
-                                                                                  
-    
+    </html>
+                    

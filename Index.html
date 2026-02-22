@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group 4 Project - Cybersecurity Tool</title>
+    <style>
+        /* --- IMPORT FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #1a1d29; 
+            color: #ffffff;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 120px; 
+            padding-bottom: 2rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            overflow-x: hidden; 
+        }
+
+        /* --- 1. GLASSMORPHIC NAVBAR --- */
+        .glass-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            z-index: 1000;
+            background: rgba(26, 29, 41, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+            white-space: nowrap; 
+        }
+        
+        .nav-logo span.cyan { font-family: 'Poppins', sans-serif; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+        .nav-logo span.magenta { font-family: 'Poppins', sans-serif; color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+
+        /* --- BURGER ICON --- */
+        .menu-icon {
+            cursor: pointer;
+            z-index: 1002; 
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        /* --- BACKGROUND BLUR OVERLAY --- */
+        .page-blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 29, 41, 0.4); 
+            backdrop-filter: blur(12px); 
+            z-index: 998; 
+            opacity: 0;
+            pointer-events: none; 
+            transition: opacity 0.4s ease;
+        }
+
+        .page-blur-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* --- THE SIDE DRAWER NAV --- */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: -250px; 
+            width: 250px; 
+            height: 100vh; 
+            background-color: #151922; 
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1005; 
+            transition: right 0.4s ease; 
+        }
+
+        .nav-drawer.active { right: 0; }
+
+        .drawer-header { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+
+        .close-btn {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #aaaaaa;
+            cursor: pointer;
+            line-height: 0.5;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover { color: #ff0055; }
+
+        .nav-drawer a {
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-align: left; 
+            padding: 15px 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .nav-drawer a:hover {
+            color: #00f3ff;
+            padding-left: 15px; 
+            border-bottom: 1px solid #00f3ff;
+        }
+
+        /* --- 2. WELCOME BOX --- */
+        .header-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 4rem;
+        }
+
+        .welcome-box {
+            background-color: #242b3b;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        .line-1 {
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 3rem;
+            color: #00f3ff;
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.6); 
+            display: block; 
+            text-align: center;
+            margin-bottom: 15px;
+            opacity: 0; 
+            transform: translateX(100px); 
+            animation: slideInRight 2s ease forwards;
+        }
+
+        .line-2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem; 
+            line-height: 1.6;
+            color: #aaaaaa;
+            text-align: center;
+            opacity: 0; 
+            transform: translateX(-100px); 
+            animation: slideInLeft 2s ease forwards;
+        }
+
+        @keyframes slideInRight { 0% { opacity: 0; transform: translateX(100%); } 100% { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInLeft { 0% { opacity: 0; transform: translateX(-100%); } 100% { opacity: 1; transform: translateX(0); } }
+
+        .hl-cyan { color: #00f3ff; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
+        .hl-magenta { color: #ff00ff; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+        .hl-red { color: #ff0055; font-weight: 600; font-family: 'Poppins', sans-serif; text-shadow: 0 0 10px rgba(255, 0, 85, 0.3); }
+
+        /* --- 3. THE CHECKER ENGINE --- */
+        .engine-container {
+            background-color: #242b3b; 
+            padding: 2rem;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            margin-bottom: 2rem; 
+            animation: glowingShadowColors 8s infinite alternate linear;
+        }
+
+        @keyframes glowingShadowColors {
+            0%   { box-shadow: 0 0 25px #0000ff; }
+            33%  { box-shadow: 0 0 25px #00008b; }
+            66%  { box-shadow: 0 0 25px #ee82ee; }
+            100% { box-shadow: 0 0 25px #800080; }
+        }
+
+        .input-group { margin-bottom: 1.5rem; position: relative; }
+        
+        input[type="text"], input[type="password"] { 
+            width: 100%; 
+            padding: 15px;
+            padding-right: 45px; /* Leave space for the eye icon */
+            background-color: #151922; 
+            border: 2px solid #333; 
+            border-radius: 8px; 
+            color: #00f3ff; 
+            font-size: 1.1rem; 
+            outline: none; 
+            transition: all 0.3s ease; 
+        }
+        
+        input:focus { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+
+        /* FEATURE 5: Show/Hide Toggle Styles */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .toggle-password:hover { opacity: 1; }
+
+        .strength-meter { height: 10px; background-color: #333; border-radius: 5px; margin-bottom: 0.5rem; overflow: hidden; }
+        .meter-fill { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; box-shadow: 0 0 10px currentColor; }
+
+        .status-text { font-weight: bold; margin-bottom: 5px; min-height: 1.2em; }
+        
+        /* FEATURE 2: Crack Time text style */
+        .crack-time-text { color: #aaaaaa; font-size: 0.85rem; margin-bottom: 10px; font-family: 'Poppins', sans-serif; }
+        
+        .pwned-warning { color: #ff0055; font-size: 0.9rem; margin-bottom: 15px; min-height: 1.2em; }
+
+        .requirements { text-align: left; list-style: none; font-size: 0.9rem; color: #888; }
+        .requirements li { margin-bottom: 5px; transition: color 0.3s ease; }
+        .requirements li::before { content: "• "; }
+        .valid { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+        .valid::before { content: "✓ "; }
+
+        /* --- 4. THE GENERATOR ENGINE --- */
+        .generator-container {
+            background-color: #242b3b;
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid #00f3ff; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 6rem;
+        }
+
+        .generator-container h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* FEATURE 3: Generator Controls Styles */
+        .generator-controls {
+            background-color: #1a1d29;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .slider-group input[type="range"] {
+            width: 60%;
+            accent-color: #00f3ff;
+            cursor: pointer;
+            padding: 0; /* Reset padding for slider */
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            accent-color: #ff00ff;
+            width: 16px; /* Reset width for checkbox */
+        }
+
+        .generated-display {
+            background-color: #151922;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #aaaaaa;
+            color: #ff00ff; 
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background-color: transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .generate-btn { color: #00f3ff; border: 2px solid #00f3ff; }
+        .generate-btn:hover { background-color: #00f3ff; color: #1a1d29; box-shadow: 0 0 15px #00f3ff; }
+
+        .copy-btn { color: #ff00ff; border: 2px solid #ff00ff; display: none; }
+        .copy-btn:hover { background-color: #ff00ff; color: #1a1d29; box-shadow: 0 0 15px #ff00ff; }
+
+        /* --- 5. FLASHCARDS STYLES --- */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 30px; 
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .cyber-card {
+            background-color: #242b3b; 
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 350px; 
+            text-align: center;
+            color: #fff;
+            transition: all 0.4s ease; 
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), 0 0 15px rgba(255, 0, 255, 0.2);
+            border-color: #00f3ff;
+        }
+
+        .cyber-card h2 { color: #ffffff; margin: 15px 0; font-size: 1.8rem; font-weight: bold; }
+        .cyber-card p { color: #aaaaaa; line-height: 1.6; font-size: 1rem; }
+        .icon-glow { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 0 0 15px #00f3ff; }
+
+        @media (max-width: 600px) {
+            .glass-nav { padding: 0 20px; }
+            .nav-logo { font-size: 1.2rem; }
+            .line-1 { font-size: 2rem; }
+            .line-2 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="nav-logo"><span class="cyan">GROUP 4</span> <span class="magenta">PROJECT</span></div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+    </nav>
+    <div class="page-blur-overlay" id="blurOverlay" onclick="toggleMenu()"></div>
+    <div class="nav-drawer" id="navDrawer">
+        <div class="drawer-header"><div class="close-btn" onclick="toggleMenu()">&times;</div></div>
+        <a href="#" onclick="toggleMenu()">Home</a>
+        <a href="#engine" onclick="toggleMenu()">Checker</a>
+        <a href="#journey" onclick="toggleMenu()">About</a>
+    </div>
+
+    <div class="header-section">
+        <div class="welcome-box">
+            <div class="line-1">Welcome,</div>
+            <div class="line-2">
+                Most data breaches start with a <span class="hl-red">weak password</span>.<br>
+                Check your current <span class="hl-cyan">strength</span> or generate an <span class="hl-cyan">unbreakable</span>, 
+                encrypted-ready suggestion in <span class="hl-magenta">seconds</span>.
+            </div>
+        </div>
+    </div>
+
+    <div id="engine" class="engine-container">
+        <div class="input-group">
+            <input type="password" id="passwordInput" placeholder="Enter Password to Test...">
+            <span class="toggle-password" onclick="togglePasswordVisibility()" id="toggleIcon">👁️</span>
+        </div>
+        
+        <div class="strength-meter"><div class="meter-fill" id="meterFill"></div></div>
+        <p id="strengthText" class="status-text">Strength: None</p>
+        
+        <p id="crackTimeText" class="crack-time-text">Time to crack: 0 seconds</p>
+        
+        <p id="pwnedText" class="pwned-warning"></p> 
+        <ul class="requirements">
+            <li id="req-length">At least 8 characters</li>
+            <li id="req-number">Contains a number (0-9)</li>
+            <li id="req-symbol">Contains a symbol (!@#$)</li>
+            <li id="req-case">Uppercase & Lowercase</li>
+        </ul>
+    </div>
+
+    <div class="generator-container">
+        <h3>Generate a Secure Passphrase</h3>
+        
+        <div class="generator-controls">
+            <div class="slider-group">
+                <label for="wordCountSlider">Words: <span id="wordCountLabel" class="hl-cyan">3</span></label>
+                <input type="range" id="wordCountSlider" min="2" max="6" value="3" oninput="updateSliderLabel()">
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="includeNum" checked> Numbers</label>
+                <label><input type="checkbox" id="includeSym" checked> Symbols</label>
+            </div>
+        </div>
+
+        <div class="generated-display" id="generatedDisplay">Click Generate Below</div>
+        
+        <div class="button-group">
+            <button class="action-btn generate-btn" onclick="generatePassphrase()">Generate</button>
+            <button class="action-btn copy-btn" id="copyBtn" onclick="copyToClipboard()">Copy</button>
+        </div>
+    </div>
+
+    <div id="journey" class="card-grid">
+        <div class="cyber-card">
+            <div class="icon-glow">⚙️</div> 
+            <h2>The Blueprint</h2>
+            <p>As Level 2 Cyber Security scholars at FUD, our mission is mastering the fundamentals.</p>
+        </div>
+        <div class="cyber-card">
+            <div class="icon-glow">🛡️</div>
+            <h2>The Execution</h2>
+            <p>Theory is only half the battle. We apply our knowledge to engineer real-world tools.</p>
+        </div>
+        <div class="cyber-card">
+            <div class="icon-glow">🎯</div>
+            <h2>The Horizon</h2>
+            <p>Our ultimate objective is to become Nigeria's next generation of experts.</p>
+        </div>
+    </div>
+
+    <script>
+        /* --- NAV LOGIC --- */
+        function toggleMenu() {
+            document.getElementById('blurOverlay').classList.toggle('active');
+            document.getElementById('navDrawer').classList.toggle('active');
+        }
+
+        /* --- FEATURE 5: SHOW/HIDE PASSWORD LOGIC --- */
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('passwordInput');
+            const icon = document.getElementById('toggleIcon');
+            
+            if (pwdInput.type === "password") {
+                pwdInput.type = "text";
+                icon.innerText = "🙈"; // Change icon to a covered monkey when text is visible!
+            } else {
+                pwdInput.type = "password";
+                icon.innerText = "👁️";
+            }
+        }
+
+        /* --- FEATURE 3: UPDATE SLIDER LABEL LOGIC --- */
+        function updateSliderLabel() {
+            const sliderValue = document.getElementById('wordCountSlider').value;
+            document.getElementById('wordCountLabel').innerText = sliderValue;
+        }
+
+        /* --- GENERATOR ENGINE LOGIC --- */
+        function generatePassphrase() {
+            const words = ["cyber", "phantom", "shield", "matrix", "nexus", "quantum", "stealth", "cipher", "dragon", "rocket", "nebula", "laser", "galaxy", "pulse", "wire", "hacker", "system", "code", "proxy"];
+            const symbols = ["!", "@", "#", "$", "%", "*", "^", "&"];
+            
+            // Read what the user selected in the controls
+            const wordCount = document.getElementById('wordCountSlider').value;
+            const incNum = document.getElementById('includeNum').checked;
+            const incSym = document.getElementById('includeSym').checked;
+            
+            let selectedWords = [];
+            
+            // Loop based on how many words the user wants
+            for (let i = 0; i < wordCount; i++) {
+                let w = words[Math.floor(Math.random() * words.length)];
+                // Capitalize only the first word to pass strength checks easily
+                if (i === 0) {
+                    w = w.charAt(0).toUpperCase() + w.slice(1);
+                }
+                selectedWords.push(w);
+            }
+            
+            // Join the words with hyphens
+            let newPassword = selectedWords.join('-');
+            
+            // Add numbers if the box is checked
+            if (incNum) {
+                newPassword += (Math.floor(Math.random() * 99) + 1);
+            }
+            
+            // Add symbols if the box is checked
+            if (incSym) {
+                newPassword += symbols[Math.floor(Math.random() * symbols.length)];
+            }
+            
+            document.getElementById('generatedDisplay').innerText = newPassword;
+            document.getElementById('copyBtn').style.display = 'block';
+        }
+
+        /* --- COPY TO CLIPBOARD LOGIC --- */
+        function copyToClipboard() {
+            const textToCopy = document.getElementById('generatedDisplay').innerText;
+            const copyBtn = document.getElementById('copyBtn');
+
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                copyBtn.innerText = "Copied!";
+                setTimeout(function() { copyBtn.innerText = "Copy"; }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        /* --- FEATURE 2: CRACK TIME MATH LOGIC --- */
+        function calculateCrackTime(password) {
+            const crackTimeText = document.getElementById('crackTimeText');
+            
+            if (password.length === 0) {
+                crackTimeText.innerText = "Time to crack: 0 seconds";
+                crackTimeText.style.color = "#aaaaaa";
+                return;
+            }
+
+            // Figure out what types of characters are in the password
+            let charsetSize = 0;
+            if (/[a-z]/.test(password)) charsetSize += 26; // lowercase letters
+            if (/[A-Z]/.test(password)) charsetSize += 26; // uppercase letters
+            if (/\d/.test(password)) charsetSize += 10;    // numbers
+            if (/[^A-Za-z0-9]/.test(password)) charsetSize += 32; // symbols
+
+            // Total combinations = character pool size to the power of the length
+            let combinations = Math.pow(charsetSize, password.length);
+            
+            // Let's assume a fast graphics card making 100 billion guesses a second
+            let guessesPerSecond = 100000000000; 
+            let secondsToCrack = combinations / guessesPerSecond;
+
+            // Translate seconds into readable time
+            if (secondsToCrack < 1) {
+                crackTimeText.innerText = "Time to crack: Instantly 💀";
+                crackTimeText.style.color = "#ff0055";
+            } else if (secondsToCrack < 60) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack)} seconds`;
+                crackTimeText.style.color = "#ffaa00";
+            } else if (secondsToCrack < 3600) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 60)} minutes`;
+                crackTimeText.style.color = "#ffaa00";
+            } else if (secondsToCrack < 86400) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 3600)} hours`;
+                crackTimeText.style.color = "#ffff00";
+            } else if (secondsToCrack < 31536000) {
+                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 86400)} days`;
+                crackTimeText.style.color = "#00f3ff";
+            } else {
+                let years = secondsToCrack / 31536000;
+                if (years > 1000000) {
+                    crackTimeText.innerText = "Time to crack: Millions of years 🛡️";
+                } else {
+                    crackTimeText.innerText = `Time to crack: ${Math.round(years).toLocaleString()} years`;
+                }
+                crackTimeText.style.color = "#00f3ff";
+            }
+        }
+
+        /* --- CHECKER ENGINE LOGIC --- */
+        const passwordInput = document.getElementById('passwordInput');
+        const meterFill = document.getElementById('meterFill');
+        const strengthText = document.getElementById('strengthText');
+        const pwnedText = document.getElementById('pwnedText');
+        const reqs = {
+            length: document.getElementById('req-length'),
+            number: document.getElementById('req-number'),
+            symbol: document.getElementById('req-symbol'),
+            case: document.getElementById('req-case')
+        };
+
+        let typingTimer; 
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            
+            checkComposition(password); 
+            calculateCrackTime(password); // Run the new math function!
+            
+            clearTimeout(typingTimer);
+            pwnedText.innerText = "Checking database...";
+            pwnedText.style.color = "#888";
+
+            if (password.length > 0) {
+                typingTimer = setTimeout(() => checkPwnedStatus(password), 500);
+            } else {
+                pwnedText.innerText = "";
+            }
+        });
+
+        function checkComposition(password) {
+            let score = 0;
+            if (password.length >= 8) { reqs.length.classList.add('valid'); score++; } else reqs.length.classList.remove('valid');
+            if (/\d/.test(password)) { reqs.number.classList.add('valid'); score++; } else reqs.number.classList.remove('valid');
+            if (/[^A-Za-z0-9]/.test(password)) { reqs.symbol.classList.add('valid'); score++; } else reqs.symbol.classList.remove('valid');
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) { reqs.case.classList.add('valid'); score++; } else reqs.case.classList.remove('valid');
+            updateMeter(score, false); 
+        }
+
+        async function checkPwnedStatus(password) {
+            const buffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(password));
+            const hashArray = Array.from(new Uint8Array(buffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const prefix = hashHex.slice(0, 5);
+            const suffix = hashHex.slice(5);
+            try {
+                const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`);
+                const data = await response.text();
+                const regex = new RegExp(`^${suffix}:([0-9]+)`, 'm');
+                const match = data.match(regex);
+                if (match) {
+                    const count = parseInt(match[1]).toLocaleString();
+                    pwnedText.innerText = `⚠️ DANGER: Found in ${count} data breaches!`;
+                    pwnedText.style.color = "#ff0055";
+                    updateMeter(0, true); 
+                } else {
+                    pwnedText.innerText = "✅ Not found in known breaches.";
+                    pwnedText.style.color = "#00f3ff";
+                }
+            } catch (error) {
+                pwnedText.innerText = "Error checking database.";
+            }
+        }
+
+        function updateMeter(score, isPwned) {
+            if (isPwned) {
+                meterFill.style.width = '100%';
+                meterFill.style.backgroundColor = '#ff0055'; 
+                strengthText.innerText = "Strength: COMPROMISED";
+                strengthText.style.color = '#ff0055';
+                return;
+            }
+            let width = '0%', color = 'red', text = 'Weak';
+            if(score == 1) { width = '25%'; color = '#ff0055'; text = 'Weak'; }
+            else if(score == 2) { width = '50%'; color = '#ffaa00'; text = 'Medium'; }
+            else if(score == 3) { width = '75%'; color = '#ffff00'; text = 'Strong'; }
+            else if(score == 4) { width = '100%'; color = '#00f3ff'; text = 'Unbreakable'; }
+            meterFill.style.width = width;
+            meterFill.style.backgroundColor = color;
+            meterFill.style.boxShadow = `0 0 10px ${color}`;
+            strengthText.innerText = `Strength: ${text}`;
+            strengthText.style.color = color;
+        }
+    </script>
+</body>
+</html>

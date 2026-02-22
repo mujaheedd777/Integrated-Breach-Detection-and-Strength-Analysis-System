@@ -19,17 +19,17 @@
         }
 
         body {
-            background-color: #1a1d29; 
+            background-color: #1a1d29;
             color: #ffffff;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding-top: 120px; 
+            padding-top: 120px;
             padding-bottom: 2rem;
             padding-left: 1rem;
             padding-right: 1rem;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
         /* --- 1. GLASSMORPHIC NAVBAR --- */
@@ -56,16 +56,16 @@
             font-size: 1.5rem;
             letter-spacing: 1px;
             color: #ffffff;
-            white-space: nowrap; 
+            white-space: nowrap;
         }
-        
+
         .nav-logo span.cyan { font-family: 'Poppins', sans-serif; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
         .nav-logo span.magenta { font-family: 'Poppins', sans-serif; color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
 
         /* --- BURGER ICON --- */
         .menu-icon {
             cursor: pointer;
-            z-index: 1002; 
+            z-index: 1002;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -86,11 +86,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(26, 29, 41, 0.4); 
-            backdrop-filter: blur(12px); 
-            z-index: 998; 
+            background-color: rgba(26, 29, 41, 0.4);
+            backdrop-filter: blur(12px);
+            z-index: 998;
             opacity: 0;
-            pointer-events: none; 
+            pointer-events: none;
             transition: opacity 0.4s ease;
         }
 
@@ -103,16 +103,16 @@
         .nav-drawer {
             position: fixed;
             top: 0;
-            right: -250px; 
-            width: 250px; 
-            height: 100vh; 
-            background-color: #151922; 
+            right: -250px;
+            width: 250px;
+            height: 100vh;
+            background-color: #151922;
             box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            z-index: 1005; 
-            transition: right 0.4s ease; 
+            z-index: 1005;
+            transition: right 0.4s ease;
         }
 
         .nav-drawer.active { right: 0; }
@@ -137,15 +137,15 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 400;
-            text-align: left; 
+            text-align: left;
             padding: 15px 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: color 0.3s ease, padding-left 0.3s ease;
         }
 
         .nav-drawer a:hover {
             color: #00f3ff;
-            padding-left: 15px; 
+            padding-left: 15px;
             border-bottom: 1px solid #00f3ff;
         }
 
@@ -161,33 +161,33 @@
             background-color: #242b3b;
             padding: 2.5rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             max-width: 900px;
             width: 100%;
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         .line-1 {
-            font-family: 'Orbitron', sans-serif; 
+            font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             color: #00f3ff;
-            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.6); 
-            display: block; 
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.6);
+            display: block;
             text-align: center;
             margin-bottom: 15px;
-            opacity: 0; 
-            transform: translateX(100px); 
+            opacity: 0;
+            transform: translateX(100px);
             animation: slideInRight 2s ease forwards;
         }
 
         .line-2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem; 
+            font-size: 1.3rem;
             line-height: 1.6;
             color: #aaaaaa;
             text-align: center;
-            opacity: 0; 
-            transform: translateX(-100px); 
+            opacity: 0;
+            transform: translateX(-100px);
             animation: slideInLeft 2s ease forwards;
         }
 
@@ -200,13 +200,13 @@
 
         /* --- 3. THE CHECKER ENGINE --- */
         .engine-container {
-            background-color: #242b3b; 
+            background-color: #242b3b;
             padding: 2rem;
             border-radius: 15px;
             width: 100%;
             max-width: 450px;
             text-align: center;
-            margin-bottom: 2rem; 
+            margin-bottom: 2rem;
             animation: glowingShadowColors 8s infinite alternate linear;
         }
 
@@ -218,23 +218,22 @@
         }
 
         .input-group { margin-bottom: 1.5rem; position: relative; }
-        
-        input[type="text"], input[type="password"] { 
-            width: 100%; 
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
             padding: 15px;
-            padding-right: 45px; /* Leave space for the eye icon */
-            background-color: #151922; 
-            border: 2px solid #333; 
-            border-radius: 8px; 
-            color: #00f3ff; 
-            font-size: 1.1rem; 
-            outline: none; 
-            transition: all 0.3s ease; 
+            padding-right: 45px;
+            background-color: #151922;
+            border: 2px solid #333;
+            border-radius: 8px;
+            color: #00f3ff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
         }
-        
+
         input:focus { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
 
-        /* FEATURE 5: Show/Hide Toggle Styles */
         .toggle-password {
             position: absolute;
             right: 15px;
@@ -251,10 +250,7 @@
         .meter-fill { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; box-shadow: 0 0 10px currentColor; }
 
         .status-text { font-weight: bold; margin-bottom: 5px; min-height: 1.2em; }
-        
-        /* FEATURE 2: Crack Time text style */
         .crack-time-text { color: #aaaaaa; font-size: 0.85rem; margin-bottom: 10px; font-family: 'Poppins', sans-serif; }
-        
         .pwned-warning { color: #ff0055; font-size: 0.9rem; margin-bottom: 15px; min-height: 1.2em; }
 
         .requirements { text-align: left; list-style: none; font-size: 0.9rem; color: #888; }
@@ -271,7 +267,7 @@
             width: 100%;
             max-width: 450px;
             text-align: center;
-            border: 1px solid #00f3ff; 
+            border: 1px solid #00f3ff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             margin-bottom: 6rem;
         }
@@ -283,7 +279,6 @@
             margin-bottom: 15px;
         }
 
-        /* FEATURE 3: Generator Controls Styles */
         .generator-controls {
             background-color: #1a1d29;
             padding: 15px;
@@ -306,7 +301,7 @@
             width: 60%;
             accent-color: #00f3ff;
             cursor: pointer;
-            padding: 0; /* Reset padding for slider */
+            padding: 0;
         }
 
         .checkbox-group {
@@ -322,7 +317,7 @@
         }
         .checkbox-group input[type="checkbox"] {
             accent-color: #ff00ff;
-            width: 16px; /* Reset width for checkbox */
+            width: 16px;
         }
 
         .generated-display {
@@ -330,7 +325,7 @@
             padding: 15px;
             border-radius: 8px;
             border: 1px dashed #aaaaaa;
-            color: #ff00ff; 
+            color: #ff00ff;
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 15px;
@@ -367,29 +362,30 @@
         /* --- 5. FLASHCARDS STYLES --- */
         .card-grid {
             display: flex;
-            flex-wrap: wrap; 
-            gap: 30px; 
+            flex-wrap: wrap;
+            gap: 30px;
             justify-content: center;
             width: 100%;
             max-width: 1200px;
+            margin-bottom: 6rem;
         }
 
         .cyber-card {
-            background-color: #242b3b; 
+            background-color: #242b3b;
             border: 1px solid #333;
             border-radius: 20px;
             padding: 2.5rem 2rem;
             width: 100%;
-            max-width: 350px; 
+            max-width: 350px;
             text-align: center;
             color: #fff;
-            transition: all 0.4s ease; 
+            transition: all 0.4s ease;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .cyber-card:hover {
-            transform: translateY(-10px); 
+            transform: translateY(-10px);
             box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), 0 0 15px rgba(255, 0, 255, 0.2);
             border-color: #00f3ff;
         }
@@ -398,11 +394,173 @@
         .cyber-card p { color: #aaaaaa; line-height: 1.6; font-size: 1rem; }
         .icon-glow { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 0 0 15px #00f3ff; }
 
+        /* =====================================================
+           --- 6. ABOUT / CONTACT SECTION ---
+        ====================================================== */
+        .about-section {
+            width: 100%;
+            max-width: 520px;
+            margin-bottom: 4rem;
+        }
+
+        .about-section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00f3ff;
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0, 243, 255, 0.4);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .about-section-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #777;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form-wrapper {
+            background-color: #1e2333;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 243, 255, 0.05);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .contact-form-wrapper:hover {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 243, 255, 0.08);
+        }
+
+        /* Contact input fields — matching the screenshot style */
+        .contact-input-group {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .contact-input,
+        .contact-textarea {
+            width: 100%;
+            padding: 20px 18px;
+            background-color: #262d40;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+            resize: none;
+        }
+
+        .contact-input::placeholder,
+        .contact-textarea::placeholder {
+            color: #6a7190;
+            font-size: 1rem;
+        }
+
+        .contact-input:hover,
+        .contact-textarea:hover {
+            background-color: #2c3450;
+            border-color: rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-input:focus,
+        .contact-textarea:focus {
+            background-color: #2c3450;
+            border-color: #00f3ff;
+            box-shadow: 0 0 0 4px rgba(0, 243, 255, 0.1), 0 4px 20px rgba(0, 243, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-textarea {
+            height: 130px;
+            padding-top: 18px;
+        }
+
+        /* Submit button */
+        .contact-submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(255, 0, 255, 0.1));
+            border: 2px solid #00f3ff;
+            border-radius: 14px;
+            color: #00f3ff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .contact-submit-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(255, 0, 255, 0.15));
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4), 0 0 40px rgba(0, 243, 255, 0.15);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .contact-submit-btn:active {
+            transform: translateY(0px);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Success / error feedback message */
+        .form-feedback {
+            margin-top: 1rem;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-feedback.success {
+            background-color: rgba(0, 243, 255, 0.1);
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+            display: block;
+        }
+
+        .form-feedback.error {
+            background-color: rgba(255, 0, 85, 0.1);
+            border: 1px solid #ff0055;
+            color: #ff0055;
+            display: block;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
         @media (max-width: 600px) {
             .glass-nav { padding: 0 20px; }
             .nav-logo { font-size: 1.2rem; }
             .line-1 { font-size: 2rem; }
             .line-2 { font-size: 1rem; }
+            .about-section-title { font-size: 1.5rem; }
+            .contact-form-wrapper { padding: 1.5rem 1.2rem; }
         }
     </style>
 </head>
@@ -419,32 +577,36 @@
         <div class="drawer-header"><div class="close-btn" onclick="toggleMenu()">&times;</div></div>
         <a href="#" onclick="toggleMenu()">Home</a>
         <a href="#engine" onclick="toggleMenu()">Checker</a>
-        <a href="#journey" onclick="toggleMenu()">About</a>
+        <a href="#journey" onclick="toggleMenu()">Cards</a>
+        <a href="#about" onclick="toggleMenu()">About</a>
     </div>
 
+    <!-- WELCOME -->
     <div class="header-section">
         <div class="welcome-box">
             <div class="line-1">Welcome,</div>
             <div class="line-2">
                 Most data breaches start with a <span class="hl-red">weak password</span>.<br>
-                Check your current <span class="hl-cyan">strength</span> or generate an <span class="hl-cyan">unbreakable</span>, 
+                Check your current <span class="hl-cyan">strength</span> or generate an <span class="hl-cyan">unbreakable</span>,
                 encrypted-ready suggestion in <span class="hl-magenta">seconds</span>.
             </div>
         </div>
     </div>
 
+    <!-- CHECKER ENGINE -->
     <div id="engine" class="engine-container">
         <div class="input-group">
             <input type="password" id="passwordInput" placeholder="Enter Password to Test...">
             <span class="toggle-password" onclick="togglePasswordVisibility()" id="toggleIcon">👁️</span>
         </div>
-        
+
         <div class="strength-meter"><div class="meter-fill" id="meterFill"></div></div>
+        
         <p id="strengthText" class="status-text">Strength: None</p>
-        
+
         <p id="crackTimeText" class="crack-time-text">Time to crack: 0 seconds</p>
-        
-        <p id="pwnedText" class="pwned-warning"></p> 
+
+        <p id="pwnedText" class="pwned-warning"></p>
         <ul class="requirements">
             <li id="req-length">At least 8 characters</li>
             <li id="req-number">Contains a number (0-9)</li>
@@ -453,9 +615,10 @@
         </ul>
     </div>
 
+    <!-- GENERATOR ENGINE -->
     <div class="generator-container">
         <h3>Generate a Secure Passphrase</h3>
-        
+
         <div class="generator-controls">
             <div class="slider-group">
                 <label for="wordCountSlider">Words: <span id="wordCountLabel" class="hl-cyan">3</span></label>
@@ -468,16 +631,17 @@
         </div>
 
         <div class="generated-display" id="generatedDisplay">Click Generate Below</div>
-        
+
         <div class="button-group">
             <button class="action-btn generate-btn" onclick="generatePassphrase()">Generate</button>
             <button class="action-btn copy-btn" id="copyBtn" onclick="copyToClipboard()">Copy</button>
         </div>
     </div>
 
+    <!-- FLASHCARDS -->
     <div id="journey" class="card-grid">
         <div class="cyber-card">
-            <div class="icon-glow">⚙️</div> 
+            <div class="icon-glow">⚙️</div>
             <h2>The Blueprint</h2>
             <p>As Level 2 Cyber Security scholars at FUD, our mission is mastering the fundamentals.</p>
         </div>
@@ -493,6 +657,65 @@
         </div>
     </div>
 
+    <!-- =====================================================
+         ABOUT / CONTACT SECTION
+    ====================================================== -->
+    <section id="about" class="about-section">
+        <h2 class="about-section-title">Contact Us</h2>
+        <p class="about-section-subtitle">Have a question or feedback? Drop us a message.</p>
+
+        <!-- 
+            FORMSPREE LINK: Replace YOUR_FORMSPREE_LINK below with your actual Formspree endpoint.
+            Example: https://formspree.io/f/xabcdefg
+        -->
+        <div class="contact-form-wrapper">
+            <form id="contactForm" action="https://formspree.io/f/mblnekvp" method="POST" onsubmit="handleFormSubmit(event)">
+
+                <div class="contact-input-group">
+                    <input
+                        type="email"
+                        name="email"
+                        class="contact-input"
+                        placeholder="Email Address"
+                        required
+                    />
+                </div>
+
+                <div class="contact-input-group">
+                    <input
+                        type="tel"
+                        name="phone"
+                        class="contact-input"
+                        placeholder="Mobile Number (Optional)"
+                    />
+                </div>
+
+                <div class="contact-input-group">
+                    <input
+                        type="text"
+                        name="_subject"
+                        class="contact-input"
+                        placeholder="Email Subject"
+                        required
+                    />
+                </div>
+
+                <div class="contact-input-group">
+                    <textarea
+                        name="message"
+                        class="contact-textarea"
+                        placeholder="Your Message"
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="contact-submit-btn">Send Message</button>
+
+                <div id="formFeedback" class="form-feedback"></div>
+            </form>
+        </div>
+    </section>
+
     <script>
         /* --- NAV LOGIC --- */
         function toggleMenu() {
@@ -500,213 +723,97 @@
             document.getElementById('navDrawer').classList.toggle('active');
         }
 
-        /* --- FEATURE 5: SHOW/HIDE PASSWORD LOGIC --- */
+        /* --- SHOW/HIDE PASSWORD LOGIC --- */
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('passwordInput');
             const icon = document.getElementById('toggleIcon');
-            
             if (pwdInput.type === "password") {
                 pwdInput.type = "text";
-                icon.innerText = "🙈"; // Change icon to a covered monkey when text is visible!
+                icon.innerText = "🙈";
             } else {
                 pwdInput.type = "password";
                 icon.innerText = "👁️";
             }
         }
 
-        /* --- FEATURE 3: UPDATE SLIDER LABEL LOGIC --- */
+        /* --- SLIDER LABEL --- */
         function updateSliderLabel() {
-            const sliderValue = document.getElementById('wordCountSlider').value;
-            document.getElementById('wordCountLabel').innerText = sliderValue;
+            document.getElementById('wordCountLabel').innerText =
+                document.getElementById('wordCountSlider').value;
         }
 
         /* --- GENERATOR ENGINE LOGIC --- */
         function generatePassphrase() {
-            const words = ["cyber", "phantom", "shield", "matrix", "nexus", "quantum", "stealth", "cipher", "dragon", "rocket", "nebula", "laser", "galaxy", "pulse", "wire", "hacker", "system", "code", "proxy"];
-            const symbols = ["!", "@", "#", "$", "%", "*", "^", "&"];
-            
-            // Read what the user selected in the controls
+            const words = ["cyber","phantom","shield","matrix","nexus","quantum","stealth",
+                           "cipher","dragon","rocket","nebula","laser","galaxy","pulse",
+                           "wire","hacker","system","code","proxy"];
+            const symbols = ["!","@","#","$","%","*","^","&"];
+
             const wordCount = document.getElementById('wordCountSlider').value;
-            const incNum = document.getElementById('includeNum').checked;
-            const incSym = document.getElementById('includeSym').checked;
-            
+            const incNum    = document.getElementById('includeNum').checked;
+            const incSym    = document.getElementById('includeSym').checked;
+
             let selectedWords = [];
-            
-            // Loop based on how many words the user wants
             for (let i = 0; i < wordCount; i++) {
                 let w = words[Math.floor(Math.random() * words.length)];
-                // Capitalize only the first word to pass strength checks easily
-                if (i === 0) {
-                    w = w.charAt(0).toUpperCase() + w.slice(1);
-                }
+                if (i === 0) w = w.charAt(0).toUpperCase() + w.slice(1);
                 selectedWords.push(w);
             }
-            
-            // Join the words with hyphens
+
             let newPassword = selectedWords.join('-');
-            
-            // Add numbers if the box is checked
-            if (incNum) {
-                newPassword += (Math.floor(Math.random() * 99) + 1);
-            }
-            
-            // Add symbols if the box is checked
-            if (incSym) {
-                newPassword += symbols[Math.floor(Math.random() * symbols.length)];
-            }
-            
+            if (incNum) newPassword += (Math.floor(Math.random() * 99) + 1);
+            if (incSym) newPassword += symbols[Math.floor(Math.random() * symbols.length)];
+
             document.getElementById('generatedDisplay').innerText = newPassword;
-            document.getElementById('copyBtn').style.display = 'block';
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.style.display = 'inline-block';
         }
 
-        /* --- COPY TO CLIPBOARD LOGIC --- */
         function copyToClipboard() {
-            const textToCopy = document.getElementById('generatedDisplay').innerText;
-            const copyBtn = document.getElementById('copyBtn');
-
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                copyBtn.innerText = "Copied!";
-                setTimeout(function() { copyBtn.innerText = "Copy"; }, 2000);
-            }).catch(function(err) {
-                console.error('Could not copy text: ', err);
+            const text = document.getElementById('generatedDisplay').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerText = 'Copied!';
+                setTimeout(() => { btn.innerText = 'Copy'; }, 2000);
             });
         }
 
-        /* --- FEATURE 2: CRACK TIME MATH LOGIC --- */
-        function calculateCrackTime(password) {
-            const crackTimeText = document.getElementById('crackTimeText');
-            
-            if (password.length === 0) {
-                crackTimeText.innerText = "Time to crack: 0 seconds";
-                crackTimeText.style.color = "#aaaaaa";
-                return;
-            }
+        /* --- CONTACT FORM HANDLER --- */
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form     = document.getElementById('contactForm');
+            const feedback = document.getElementById('formFeedback');
+            const btn      = form.querySelector('.contact-submit-btn');
 
-            // Figure out what types of characters are in the password
-            let charsetSize = 0;
-            if (/[a-z]/.test(password)) charsetSize += 26; // lowercase letters
-            if (/[A-Z]/.test(password)) charsetSize += 26; // uppercase letters
-            if (/\d/.test(password)) charsetSize += 10;    // numbers
-            if (/[^A-Za-z0-9]/.test(password)) charsetSize += 32; // symbols
+            btn.innerText  = 'Sending...';
+            btn.disabled   = true;
+            feedback.className = 'form-feedback';
+            feedback.style.display = 'none';
 
-            // Total combinations = character pool size to the power of the length
-            let combinations = Math.pow(charsetSize, password.length);
-            
-            // Let's assume a fast graphics card making 100 billion guesses a second
-            let guessesPerSecond = 100000000000; 
-            let secondsToCrack = combinations / guessesPerSecond;
-
-            // Translate seconds into readable time
-            if (secondsToCrack < 1) {
-                crackTimeText.innerText = "Time to crack: Instantly 💀";
-                crackTimeText.style.color = "#ff0055";
-            } else if (secondsToCrack < 60) {
-                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack)} seconds`;
-                crackTimeText.style.color = "#ffaa00";
-            } else if (secondsToCrack < 3600) {
-                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 60)} minutes`;
-                crackTimeText.style.color = "#ffaa00";
-            } else if (secondsToCrack < 86400) {
-                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 3600)} hours`;
-                crackTimeText.style.color = "#ffff00";
-            } else if (secondsToCrack < 31536000) {
-                crackTimeText.innerText = `Time to crack: ${Math.round(secondsToCrack / 86400)} days`;
-                crackTimeText.style.color = "#00f3ff";
-            } else {
-                let years = secondsToCrack / 31536000;
-                if (years > 1000000) {
-                    crackTimeText.innerText = "Time to crack: Millions of years 🛡️";
-                } else {
-                    crackTimeText.innerText = `Time to crack: ${Math.round(years).toLocaleString()} years`;
-                }
-                crackTimeText.style.color = "#00f3ff";
-            }
-        }
-
-        /* --- CHECKER ENGINE LOGIC --- */
-        const passwordInput = document.getElementById('passwordInput');
-        const meterFill = document.getElementById('meterFill');
-        const strengthText = document.getElementById('strengthText');
-        const pwnedText = document.getElementById('pwnedText');
-        const reqs = {
-            length: document.getElementById('req-length'),
-            number: document.getElementById('req-number'),
-            symbol: document.getElementById('req-symbol'),
-            case: document.getElementById('req-case')
-        };
-
-        let typingTimer; 
-
-        passwordInput.addEventListener('input', function() {
-            const password = passwordInput.value;
-            
-            checkComposition(password); 
-            calculateCrackTime(password); // Run the new math function!
-            
-            clearTimeout(typingTimer);
-            pwnedText.innerText = "Checking database...";
-            pwnedText.style.color = "#888";
-
-            if (password.length > 0) {
-                typingTimer = setTimeout(() => checkPwnedStatus(password), 500);
-            } else {
-                pwnedText.innerText = "";
-            }
-        });
-
-        function checkComposition(password) {
-            let score = 0;
-            if (password.length >= 8) { reqs.length.classList.add('valid'); score++; } else reqs.length.classList.remove('valid');
-            if (/\d/.test(password)) { reqs.number.classList.add('valid'); score++; } else reqs.number.classList.remove('valid');
-            if (/[^A-Za-z0-9]/.test(password)) { reqs.symbol.classList.add('valid'); score++; } else reqs.symbol.classList.remove('valid');
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) { reqs.case.classList.add('valid'); score++; } else reqs.case.classList.remove('valid');
-            updateMeter(score, false); 
-        }
-
-        async function checkPwnedStatus(password) {
-            const buffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(password));
-            const hashArray = Array.from(new Uint8Array(buffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
-            const prefix = hashHex.slice(0, 5);
-            const suffix = hashHex.slice(5);
             try {
-                const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`);
-                const data = await response.text();
-                const regex = new RegExp(`^${suffix}:([0-9]+)`, 'm');
-                const match = data.match(regex);
-                if (match) {
-                    const count = parseInt(match[1]).toLocaleString();
-                    pwnedText.innerText = `⚠️ DANGER: Found in ${count} data breaches!`;
-                    pwnedText.style.color = "#ff0055";
-                    updateMeter(0, true); 
-                } else {
-                    pwnedText.innerText = "✅ Not found in known breaches.";
-                    pwnedText.style.color = "#00f3ff";
-                }
-            } catch (error) {
-                pwnedText.innerText = "Error checking database.";
-            }
-        }
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
 
-        function updateMeter(score, isPwned) {
-            if (isPwned) {
-                meterFill.style.width = '100%';
-                meterFill.style.backgroundColor = '#ff0055'; 
-                strengthText.innerText = "Strength: COMPROMISED";
-                strengthText.style.color = '#ff0055';
-                return;
+                if (response.ok) {
+                    feedback.className    = 'form-feedback success';
+                    feedback.innerText    = '✅ Message sent successfully! We\'ll get back to you soon.';
+                    form.reset();
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (err) {
+                feedback.className = 'form-feedback error';
+                feedback.innerText = '❌ Something went wrong. Please try again or check your Formspree link.';
+            } finally {
+                btn.innerText = 'Send Message';
+                btn.disabled  = false;
             }
-            let width = '0%', color = 'red', text = 'Weak';
-            if(score == 1) { width = '25%'; color = '#ff0055'; text = 'Weak'; }
-            else if(score == 2) { width = '50%'; color = '#ffaa00'; text = 'Medium'; }
-            else if(score == 3) { width = '75%'; color = '#ffff00'; text = 'Strong'; }
-            else if(score == 4) { width = '100%'; color = '#00f3ff'; text = 'Unbreakable'; }
-            meterFill.style.width = width;
-            meterFill.style.backgroundColor = color;
-            meterFill.style.boxShadow = `0 0 10px ${color}`;
-            strengthText.innerText = `Strength: ${text}`;
-            strengthText.style.color = color;
         }
     </script>
 </body>
-</html>
+                    </html>
+                                                                                  
+    

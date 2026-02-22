@@ -197,6 +197,7 @@
             align-items: center;
             gap: 20px;
         }
+
         /* --- THEME TOGGLE SWITCH --- */
         .theme-toggle {
             display: flex;
@@ -305,7 +306,7 @@
             line-height: 0.5;
             transition: color 0.3s ease;
         }
-
+        
         .close-btn:hover { color: #ff0055; }
 
         .nav-drawer a {
@@ -495,7 +496,8 @@
         }
 
         .checkbox-group { display: flex; justify-content: space-around; }
-              .checkbox-group label {
+
+        .checkbox-group label {
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -595,9 +597,8 @@
             text-align: center;
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
-        }
-
-        .about-section-subtitle {
+            }
+              .about-section-subtitle {
             font-family: 'Poppins', sans-serif;
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -712,7 +713,117 @@
         .form-feedback.error   { background: rgba(255,0,85,0.1);   border: 1px solid #ff0055; color: #ff0055; display: block; }
 
         /* =====================================================
-           7. FOOTER
+           7. TESTIMONIALS
+        ====================================================== */
+        .testimonials-section {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 5rem;
+            overflow: hidden;
+        }
+
+        .testimonials-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: #00f3ff;
+            text-shadow: 0 0 15px #00f3ff, 0 0 30px rgba(0,243,255,0.4);
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+        }
+
+        .testimonials-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: color 0.5s ease;
+        }
+
+        /* The scrolling track */
+        .testimonials-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            /* fade edges */
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scrollTestimonials 28s linear infinite;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollTestimonials {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Individual card */
+        .testimonial-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-left: 4px solid #ff00ff;
+            border-radius: 16px;
+            padding: 1.6rem 1.8rem;
+            width: 280px;
+            min-width: 280px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 15px rgba(0,243,255,0.06);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.5s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,243,255,0.2), 0 0 20px rgba(255,0,255,0.1);
+        }
+
+        .testimonial-quote-icon {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00f3ff;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            display: block;
+            opacity: 0.6;
+        }
+
+        .testimonial-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #00f3ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            transition: color 0.5s ease;
+        }
+
+        /* light mode adjustments */
+        [data-theme="light"] .testimonial-card {
+            box-shadow: 0 4px 24px rgba(10,175,204,0.18), 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="light"] .testimonial-card:hover {
+            box-shadow: 0 8px 30px rgba(10,175,204,0.28), 0 0 20px rgba(196,31,255,0.12);
+        }
+
+        /* =====================================================
+           8. FOOTER
         ====================================================== */
         .site-footer {
             width: 100%;
@@ -721,8 +832,9 @@
             background-color: var(--bg-card);
             text-align: center;
             transition: background-color 0.5s ease;
-            }
-              .footer-brand-title {
+        }
+
+        .footer-brand-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 700;
@@ -783,9 +895,8 @@
             text-decoration: none;
             font-size: 1.3rem;
             transition: all 0.3s ease;
-        }
-
-        .footer-icon-link:hover {
+            }
+             .footer-icon-link:hover {
             border-color: #00f3ff;
             color: #00f3ff;
             box-shadow: 0 0 14px rgba(0,243,255,0.3);
@@ -833,7 +944,7 @@
 
     <!-- NAVBAR -->
     <nav class="glass-nav">
-        <div class="nav-logo"><span class="cyan">Pwned</span> <span class="magenta">Guard</span></div>
+        <div class="nav-logo"><span class="cyan">Cipher</span> <span class="magenta">Meter</span></div>
 
         <div class="nav-right">
             <!-- LIGHT / DARK TOGGLE -->
@@ -933,6 +1044,92 @@
             <div class="icon-glow">🎯</div>
             <h2>The Horizon</h2>
             <p>Our ultimate objective is to become Nigeria's next generation of experts.</p>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonials-section">
+        <h2 class="testimonials-title">What People Say</h2>
+        <p class="testimonials-subtitle">Real feedback from real users</p>
+
+        <div class="testimonials-track-wrapper">
+            <div class="testimonials-track">
+
+                <!-- Original 6 cards -->
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Mujahid</div>
+                    <p class="testimonial-text">Amazing website, I have never been affected by any attack since I tested my password here. Highly recommended!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Hapsah</div>
+                    <p class="testimonial-text">Good one, doing more than expected. The breach checker alone is worth it — it caught my old password in a database leak!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Jacob</div>
+                    <p class="testimonial-text">I must recommend this to others. Simple, fast and actually educational. Every student should use this.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Mu'awiyah</div>
+                    <p class="testimonial-text">The password generator is 🔥 — I now use it for all my accounts. Never going back to weak passwords again!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Adam</div>
+                    <p class="testimonial-text">As a cyber security student myself, I can say this tool is built with real knowledge. The crack time feature is eye opening.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Talatu</div>
+                    <p class="testimonial-text">Very easy to use and the explanations are clear. I shared it with my whole class and they all loved it!</p>
+                </div>
+
+                <!-- Duplicate set for seamless infinite loop -->
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Mujahid</div>
+                    <p class="testimonial-text">Amazing website, I have never been affected by any attack since I tested my password here. Highly recommended!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Hapsah</div>
+                    <p class="testimonial-text">Good one, doing more than expected. The breach checker alone is worth it — it caught my old password in a database leak!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Jacob</div>
+                    <p class="testimonial-text">I must recommend this to others. Simple, fast and actually educational. Every student should use this.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Mu'awiyah</div>
+                    <p class="testimonial-text">The password generator is 🔥 — I now use it for all my accounts. Never going back to weak passwords again!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Adam</div>
+                    <p class="testimonial-text">As a cyber security student myself, I can say this tool is built with real knowledge. The crack time feature is eye opening.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-quote-icon">"</span>
+                    <div class="testimonial-name">Talatu</div>
+                    <p class="testimonial-text">Very easy to use and the explanations are clear. I shared it with my whole class and they all loved it!</p>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -1041,7 +1238,6 @@
         function copyToClipboard() {
             const textToCopy = document.getElementById('generatedDisplay').innerText;
             const copyBtn = document.getElementById('copyBtn');
-
             navigator.clipboard.writeText(textToCopy).then(function() {
                 copyBtn.innerText = "Copied!";
                 setTimeout(function() { copyBtn.innerText = "Copy"; }, 2000);
@@ -1094,8 +1290,9 @@
                 }
                 crackTimeText.style.color = "#00f3ff";
             }
-    }
-            /* --- CHECKER ENGINE LOGIC --- */
+        }
+
+        /* --- CHECKER ENGINE LOGIC --- */
         const passwordInput = document.getElementById('passwordInput');
         const meterFill = document.getElementById('meterFill');
         const strengthText = document.getElementById('strengthText');
@@ -1249,9 +1446,9 @@
 
         <!-- Copyright -->
         <div class="footer-copy">
-            <p>&copy; CYB-203 Assignment Group 4 &mdash; <br> FUD Cyber Security Dept. All rights reserved.</p>
+            <p>&copy; 2026 Group 4 &mdash; FUD Cyber Security Dept. All rights reserved.</p>
             <p><em>Developed by:</em> 200 Level Students &nbsp;|&nbsp; Federal University Dutse</p>
-            <p><em>Group Registration Number:</em> 61&ndash;80</p>
-            
+            <p><em>Group Registration Number:</em> 41&ndash;60</p>
 
             
+        

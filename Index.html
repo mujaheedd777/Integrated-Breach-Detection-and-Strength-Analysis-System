@@ -38,7 +38,102 @@
             --cf-text:         #e0e0e0;
         }
 
-        
+        [data-theme="light"] {
+            --bg-body:         #eef2f7;
+            --bg-card:         #ffffff;
+            --bg-deep:         #f4f7fc;
+            --bg-controls:     #f4f7fc;
+            --text-main:       #111827;
+            --text-muted:      #5a6a80;
+            --text-req:        #5a6a80;
+            --border-subtle:   #c8d6e8;
+            --border-card:     #c8d6e8;
+            --nav-bg:          rgba(238,242,247,0.88);
+            --drawer-bg:       #ffffff;
+            --overlay-bg:      rgba(200,214,232,0.5);
+            --meter-bg:        #c8d6e8;
+            --input-bg:        #f4f7fc;
+            --input-border:    #c41fff;
+            --generated-bg:    #f4f7fc;
+            /* contact form */
+            --cf-wrap-bg:      #ffffff;
+            --cf-input-bg:     #f4f7fc;
+            --cf-input-hover:  #eaf0fa;
+            --cf-placeholder:  #9aafc5;
+            --cf-text:         #111827;
+        }
+
+        /* Light mode extras */
+        [data-theme="light"] body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(10,175,204,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10,175,204,.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        [data-theme="light"] .glass-nav {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+
+        [data-theme="light"] .welcome-box,
+        [data-theme="light"] .engine-container,
+        [data-theme="light"] .generator-container,
+        [data-theme="light"] .cyber-card,
+        [data-theme="light"] .contact-form-wrapper {
+            box-shadow: 0 4px 24px rgba(10,175,204,0.18), 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="light"] input[type="text"],
+        [data-theme="light"] input[type="password"] {
+            color: #111827;
+        }
+
+        [data-theme="light"] input[type="text"]:focus,
+        [data-theme="light"] input[type="password"]:focus {
+            box-shadow: 0 0 0 4px rgba(196,31,255,0.22);
+        }
+
+        [data-theme="light"] .icon-glow {
+            filter: drop-shadow(0 0 8px rgba(10,175,204,0.5));
+        }
+
+        [data-theme="light"] .bar {
+            background-color: #111827;
+        }
+
+        [data-theme="light"] .line-2 {
+            color: #5a6a80;
+        }
+
+        [data-theme="light"] .crack-time-text {
+            color: #5a6a80;
+        }
+
+        [data-theme="light"] .requirements {
+            color: #5a6a80;
+        }
+
+        [data-theme="light"] .generated-display {
+            border-color: #c8d6e8;
+        }
+
+        [data-theme="light"] .generator-container {
+            border-color: #0aafcc;
+        }
+
+        [data-theme="light"] .nav-drawer a {
+            color: #111827;
+            border-bottom-color: #c8d6e8;
+        }
+
+        [data-theme="light"] .toggle-thumb {
+            background: #f5a623;
+            box-shadow: 0 0 8px #f5a623;
+        }
 
         /* --- GLOBAL STYLES --- */
         * {
@@ -63,16 +158,6 @@
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
-        [data-theme="light"] {
-    --bg-body:         #FFFFFF;
-    --bg-card:         #f2f2f2;  
-    --bg-deep:         #d9d9d9;  
-    --bg-controls:     #e8e8e8;
-    --bg-input:        #dedede;
-    --bg-input-hover:  #d0d0d0;
-    --meter-bg:        #c0c0c0;  
-    --border-card:     #cccccc;
-}
 
         /* --- 1. GLASSMORPHIC NAVBAR --- */
         .glass-nav {
@@ -112,7 +197,6 @@
             align-items: center;
             gap: 20px;
         }
-
         /* --- THEME TOGGLE SWITCH --- */
         .theme-toggle {
             display: flex;
@@ -335,7 +419,7 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-                       cursor: pointer;
+            cursor: pointer;
             font-size: 1.2rem;
             opacity: 0.7;
             transition: opacity 0.3s ease;
@@ -411,8 +495,7 @@
         }
 
         .checkbox-group { display: flex; justify-content: space-around; }
-
-        .checkbox-group label {
+              .checkbox-group label {
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -628,8 +711,114 @@
         .form-feedback.success { background: rgba(0,243,255,0.1); border: 1px solid #00f3ff; color: #00f3ff; display: block; }
         .form-feedback.error   { background: rgba(255,0,85,0.1);   border: 1px solid #ff0055; color: #ff0055; display: block; }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 600px) {
+        /* =====================================================
+           7. FOOTER
+        ====================================================== */
+        .site-footer {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 2rem 2rem;
+            background-color: var(--bg-card);
+            text-align: center;
+            transition: background-color 0.5s ease;
+            }
+              .footer-brand-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            transition: color 0.5s ease;
+        }
+
+        .footer-brand-title span.f-cyan    { color: #00f3ff; }
+        .footer-brand-title span.f-magenta { color: #ff00ff; }
+
+        .footer-tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 1.8rem;
+            line-height: 1.6;
+            transition: color 0.5s ease;
+        }
+
+        /* Quick nav links — stacked centered */
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-nav a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #00f3ff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-nav a:hover { opacity: 0.7; }
+
+        /* Social icons row */
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--border-card);
+            background-color: var(--bg-deep);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-icon-link:hover {
+            border-color: #00f3ff;
+            color: #00f3ff;
+            box-shadow: 0 0 14px rgba(0,243,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        /* SVG icons inherit theme color */
+        .footer-icon-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+
+        /* Divider */
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 0 auto 1.5rem;
+            transition: background 0.5s ease;
+        }
+
+        /* Copyright block */
+        .footer-copy {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            transition: color 0.5s ease;
+        }
+
+        .footer-copy em { font-style: italic; }
             .glass-nav  { padding: 0 16px; }
             .nav-logo   { font-size: 1.1rem; }
             .line-1     { font-size: 2rem; }
@@ -704,7 +893,8 @@
             <li id="req-case">Uppercase &amp; Lowercase</li>
         </ul>
     </div>
-      <!-- GENERATOR ENGINE -->
+
+    <!-- GENERATOR ENGINE -->
     <div class="generator-container">
         <h3>Generate a Secure Passphrase</h3>
 
@@ -904,9 +1094,8 @@
                 }
                 crackTimeText.style.color = "#00f3ff";
             }
-        }
-
-        /* --- CHECKER ENGINE LOGIC --- */
+    }
+            /* --- CHECKER ENGINE LOGIC --- */
         const passwordInput = document.getElementById('passwordInput');
         const meterFill = document.getElementById('meterFill');
         const strengthText = document.getElementById('strengthText');
@@ -1026,6 +1215,42 @@
             }
         }
     </script>
-</body>
-    </html>
-                    
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <!-- GitHub + Email icons only -->
+        <div class="footer-icons">
+            <!-- Replace # with your actual GitHub link -->
+            <a href="#YOUR_GITHUB_LINK" class="footer-icon-link" title="GitHub">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
+                    0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755
+                    -1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305
+                    3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93
+                    0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322
+                    3.3 1.23a11.52 11.52 0 0 1 3-.405c1.02.005 2.045.138 3 .405
+                    2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84
+                    1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81
+                    2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795
+                    24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+            </a>
+            <!-- Replace # with your actual email link -->
+            <a href="/cdn-cgi/l/email-protection#defd87918b8c819b939f9792819f9a9a8c9b8d8d" class="footer-icon-link" title="Email Us">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0
+                    2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <!-- Copyright -->
+        <div class="footer-copy">
+            <p>&copy; 2026 Group 4 &mdash; FUD Cyber Security Dept. All rights reserved.</p>
+            <p><em>Developed by:</em> 200 Level Students &nbsp;|&nbsp; Federal University Dutse</p>
+            <p><em>Group Registration Number:</em> 41&ndash;60</p>
+
+            

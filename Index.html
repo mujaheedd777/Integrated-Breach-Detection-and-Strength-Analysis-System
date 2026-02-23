@@ -306,7 +306,7 @@
             line-height: 0.5;
             transition: color 0.3s ease;
         }
-        
+
         .close-btn:hover { color: #ff0055; }
 
         .nav-drawer a {
@@ -399,8 +399,7 @@
         }
 
         .input-group { margin-bottom: 1.5rem; position: relative; }
-
-        input[type="text"], input[type="password"] {
+     input[type="text"], input[type="password"] {
             width: 100%;
             padding: 15px;
             padding-right: 45px;
@@ -597,8 +596,9 @@
             text-align: center;
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
-            }
-              .about-section-subtitle {
+        }
+
+        .about-section-subtitle {
             font-family: 'Poppins', sans-serif;
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -697,7 +697,7 @@
             color: #fff;
         }
 
-        .contact-submit-btn:active { transform: translateY(0); }
+       .contact-submit-btn:active { transform: translateY(0); }
 
         .form-feedback {
             margin-top: 1rem;
@@ -823,6 +823,190 @@
         }
 
         /* =====================================================
+           OVERLAY PAGES — CONTRIBUTORS & GUIDE
+        ====================================================== */
+        .overlay-page {
+            position: fixed; inset: 0; z-index: 2000;
+            background-color: var(--bg-body);
+            overflow-y: auto; opacity: 0; pointer-events: none;
+            transition: opacity 0.45s ease; padding-bottom: 4rem;
+        }
+        .overlay-page.open { opacity: 1; pointer-events: all; }
+
+        .overlay-header {
+            position: sticky; top: 0; z-index: 10;
+            background: var(--nav-bg); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 28px; transition: background 0.5s ease;
+        }
+        .overlay-title {
+            font-family: 'Orbitron', sans-serif; font-size: 1.2rem;
+            color: #00f3ff; text-shadow: 0 0 10px #00f3ff; letter-spacing: 2px;
+        }
+        .overlay-close {
+            font-size: 2.2rem; color: var(--text-muted); cursor: pointer;
+            line-height: 1; font-family: 'Poppins', sans-serif; font-weight: 300;
+            transition: color 0.3s ease;
+        }
+        .overlay-close:hover { color: #ff0055; }
+        .overlay-body { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+        /* -- CONTRIBUTORS -- */
+        .overlay-subtitle {
+            font-family: 'Poppins', sans-serif; font-size: 0.9rem;
+            color: var(--text-muted); text-align: center;
+            margin-bottom: 2.5rem; transition: color 0.5s ease;
+        }
+        .contributors-grid {
+            display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+        }
+        .contributor-card {
+            background-color: var(--bg-card); border: 1px solid var(--border-card);
+            border-radius: 16px; padding: 1.5rem 1.2rem; width: 160px; text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            animation: fadeinCard 0.5s ease both;
+        }
+        .contributor-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 20px rgba(0,243,255,0.25), 0 0 10px rgba(255,0,255,0.1);
+            border-color: #00f3ff;
+        }
+        @keyframes fadeinCard {
+            from { opacity:0; transform:translateY(20px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+        .contributor-number {
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
+            color: #ff00ff; letter-spacing: 1px; margin-bottom: 0.6rem;
+        }
+        .contributor-avatar {
+            font-size: 2.2rem; margin-bottom: 0.6rem; display: block;
+            filter: drop-shadow(0 0 6px rgba(0,243,255,0.4));
+        }
+        .contributor-name {
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.82rem;
+            color: var(--text-main); margin-bottom: 0.3rem; line-height: 1.3;
+            transition: color 0.5s ease;
+        }
+        .contributor-reg {
+            font-family: 'Courier New', monospace; font-size: 0.72rem;
+            color: #00f3ff; opacity: 0.8;
+        }
+
+        /* -- GUIDE -- */
+        .guide-intro {
+            font-family: 'Poppins', sans-serif; font-size: 1rem;
+            color: var(--text-muted); text-align: center;
+            max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7;
+            transition: color 0.5s ease;
+        }
+        .guide-steps {
+            display: flex; justify-content: center; gap: 0;
+            flex-wrap: wrap; margin-bottom: 3rem;
+        }
+        .guide-step {
+            display: flex; flex-direction: column; align-items: center;
+            width: 100px; position: relative; z-index: 1;
+        }
+        .guide-step::after {
+            content: ''; position: absolute; top: 18px; left: 60%;
+            width: 80%; height: 2px;
+            background: linear-gradient(90deg, #00f3ff, rgba(0,243,255,0.1));
+        }
+        .guide-step:last-child::after { display: none; }
+        .step-circle {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, #00f3ff, #ff00ff);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.85rem;
+            color: #1a1d29; margin-bottom: 0.5rem;
+            box-shadow: 0 0 12px rgba(0,243,255,0.4); position: relative; z-index: 1;
+        }
+        .step-label {
+            font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+            color: var(--text-muted); text-align: center; line-height: 1.3;
+            transition: color 0.5s ease;
+        }
+        /* Accordion */
+        .accordion-list { display: flex; flex-direction: column; gap: 12px; max-width: 780px; margin: 0 auto; }
+        .accordion-item {
+            background-color: var(--bg-card); border: 1px solid var(--border-card);
+            border-radius: 14px; overflow: hidden;
+            transition: border-color 0.3s ease, background-color 0.5s ease;
+        }
+        .accordion-item.active { border-color: #00f3ff; }
+        .accordion-trigger {
+            width: 100%; background: transparent; border: none;
+            padding: 18px 20px; display: flex; align-items: center;
+            justify-content: space-between; cursor: pointer;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.95rem;
+            color: var(--text-main); text-align: left; transition: color 0.3s ease;
+        }
+        .accordion-item.active .accordion-trigger { color: #00f3ff; }
+        .accordion-icon {
+            font-size: 1.3rem; color: #00f3ff;
+            transition: transform 0.35s ease; flex-shrink: 0; margin-left: 10px;
+        }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 20px;
+        }
+        .accordion-item.active .accordion-body { max-height: 1000px; padding: 0 20px 20px; }
+        .accordion-body p, .accordion-body li {
+            font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+            color: var(--text-muted); line-height: 1.7; transition: color 0.5s ease;
+        }
+        .accordion-body ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .accordion-body ul li { margin-bottom: 6px; }
+        .acc-highlight { color: #00f3ff; font-weight: 600; }
+        .acc-danger    { color: #ff0055; font-weight: 600; }
+        .acc-warn      { color: #ffaa00; font-weight: 600; }
+        .acc-good      { color: #00ff88; font-weight: 600; }
+
+        /* Hall of Shame */
+        .shame-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+        .shame-item {
+            display: flex; align-items: center; justify-content: space-between;
+            background-color: var(--bg-deep); border: 1px solid rgba(255,0,85,0.25);
+            border-radius: 10px; padding: 10px 14px; gap: 8px;
+            transition: background-color 0.5s ease; flex-wrap: wrap;
+        }
+        .shame-pw { font-family: 'Courier New', monospace; font-size: 1rem; color: #ff0055; font-weight: bold; }
+        .shame-badge {
+            font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+            background: rgba(255,0,85,0.15); border: 1px solid #ff0055;
+            color: #ff0055; border-radius: 20px; padding: 3px 10px;
+        }
+        .shame-test-btn {
+            background: transparent; border: 1px solid #ffaa00; color: #ffaa00;
+            font-family: 'Poppins', sans-serif; font-size: 0.75rem;
+            padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .shame-test-btn:hover { background: #ffaa00; color: #1a1d29; }
+
+        /* Glossary */
+        .glossary-list { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .glossary-item { border-left: 3px solid #00f3ff; padding-left: 14px; }
+        .glossary-term { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00f3ff; margin-bottom: 2px; }
+        .glossary-def  { font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; transition: color 0.5s ease; }
+
+        /* Schedule table */
+        .schedule-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; }
+        .schedule-table th { background: rgba(0,243,255,0.1); color: #00f3ff; padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(0,243,255,0.2); }
+        .schedule-table td { padding: 10px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); transition: color 0.5s ease; }
+        .schedule-table tr:last-child td { border-bottom: none; }
+
+        @media (max-width: 600px) {
+            .guide-step { width: 70px; }
+            .contributor-card { width: 140px; }
+            .overlay-title { font-size: 0.95rem; }
+            .shame-item { flex-direction: column; align-items: flex-start; }
+        }
+
+        /* =====================================================
            8. FOOTER
         ====================================================== */
         .site-footer {
@@ -895,8 +1079,9 @@
             text-decoration: none;
             font-size: 1.3rem;
             transition: all 0.3s ease;
-            }
-             .footer-icon-link:hover {
+        }
+
+        .footer-icon-link:hover {
             border-color: #00f3ff;
             color: #00f3ff;
             box-shadow: 0 0 14px rgba(0,243,255,0.3);
@@ -910,8 +1095,7 @@
             fill: currentColor;
             transition: fill 0.3s ease;
         }
-
-        /* Divider */
+         /* Divider */
         .footer-divider {
             width: 60px;
             height: 1px;
@@ -944,7 +1128,7 @@
 
     <!-- NAVBAR -->
     <nav class="glass-nav">
-        <div class="nav-logo"><span class="cyan">Cipher</span> <span class="magenta">Meter</span></div>
+        <div class="nav-logo"><span class="cyan">GROUP 4</span> <span class="magenta">PROJECT</span></div>
 
         <div class="nav-right">
             <!-- LIGHT / DARK TOGGLE -->
@@ -971,6 +1155,8 @@
         <a href="#engine"  onclick="toggleMenu()">Checker</a>
         <a href="#journey" onclick="toggleMenu()">About</a>
         <a href="#contact" onclick="toggleMenu()">Contact</a>
+        <a href="#" onclick="toggleMenu(); openOverlay('contributorsOverlay')">Contributors</a>
+        <a href="#" onclick="toggleMenu(); openOverlay('guideOverlay')">Guide</a>
     </div>
 
     <!-- WELCOME BOX -->
@@ -1237,7 +1423,8 @@
         /* --- COPY TO CLIPBOARD LOGIC --- */
         function copyToClipboard() {
             const textToCopy = document.getElementById('generatedDisplay').innerText;
-            const copyBtn = document.getElementById('copyBtn');
+                 const copyBtn = document.getElementById('copyBtn');
+
             navigator.clipboard.writeText(textToCopy).then(function() {
                 copyBtn.innerText = "Copied!";
                 setTimeout(function() { copyBtn.innerText = "Copy"; }, 2000);
@@ -1411,7 +1598,464 @@
                 btn.disabled  = false;
             }
         }
-    </script>
+        /* --- OVERLAY LOGIC --- */
+        function openOverlay(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOverlay(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        /* --- ACCORDION LOGIC --- */
+        function toggleAccordion(btn) {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+            // Open clicked one if it wasn't already open
+            if (!isActive) item.classList.add('active');
+        }
+
+        /* --- HALL OF SHAME TEST BUTTON --- */
+        function testShamePassword(pw) {
+            closeOverlay('guideOverlay');
+            const input = document.getElementById('passwordInput');
+            input.value = pw;
+            input.dispatchEvent(new Event('input'));
+            document.getElementById('engine').scrollIntoView({ behavior: 'smooth' });
+        }
+</script>
+
+    <!-- =====================================================
+         CONTRIBUTORS OVERLAY
+    ====================================================== -->
+    <div class="overlay-page" id="contributorsOverlay">
+        <div class="overlay-header">
+            <span class="overlay-title">👥 THE TEAM</span>
+            <span class="overlay-close" onclick="closeOverlay('contributorsOverlay')">&times;</span>
+        </div>
+        <div class="overlay-body">
+            <p class="overlay-subtitle">Group 4 &mdash; FUD Department of Cyber Security, 200 Level &nbsp;|&nbsp; Reg. 61&ndash;80</p>
+            <div class="contributors-grid">
+
+                <div class="contributor-card">
+                    <div class="contributor-number">01</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Mujahid Adamu Aliyu</div>
+                    <div class="contributor-reg">FCP/CYB/24/1069</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">02</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Musa Muhammad Musa</div>
+                    <div class="contributor-reg">FCP/CYB/24/1061</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">03</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Abdurrahman Aliyu Ibrahim</div>
+                    <div class="contributor-reg">FCP/CYB/24/1068</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">04</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Aliyu Muhammed Mujitabah</div>
+                    <div class="contributor-reg">FCP/CYB/24/1070</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">05</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Khalid Mahmud Umar</div>
+                    <div class="contributor-reg">FCP/CYB/24/1073</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">06</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Mu'awiyah Basiru Mustapha</div>
+                    <div class="contributor-reg">FCP/CYB/24/1072</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">07</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Muhammad Ibrahim Murtala</div>
+                    <div class="contributor-reg">FCP/CYB/24/1064</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">08</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Adamu Muhammad Abubakar</div>
+                    <div class="contributor-reg">FCP/CYB/24/1062</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">09</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">Muhammad Sagir Yunus</div>
+                    <div class="contributor-reg">FCP/CYB/24/1076</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">10</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">11</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">12</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">13</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">14</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">15</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">16</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">17</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">18</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+                <div class="contributor-card">
+                    <div class="contributor-number">19</div>
+                    <span class="contributor-avatar">👤</span>
+                    <div class="contributor-name">None</div>
+                    <div class="contributor-reg">FCP/CYB/24/0000</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         GUIDE OVERLAY
+    ====================================================== -->
+    <div class="overlay-page" id="guideOverlay">
+        <div class="overlay-header">
+            <span class="overlay-title">📖 USER GUIDE</span>
+            <span class="overlay-close" onclick="closeOverlay('guideOverlay')">&times;</span>
+        </div>
+        <div class="overlay-body">
+
+            <p class="guide-intro">
+                A web-based cybersecurity toolkit built by <span style="color:#00f3ff;font-weight:600;">200 Level students</span>
+                of FUD to help users stay safe online. Learn how to use every feature below.
+            </p>
+
+            <!-- Progress Steps -->
+            <div class="guide-steps">
+                <div class="guide-step">
+                    <div class="step-circle">01</div>
+                    <div class="step-label">Type Password</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-circle">02</div>
+                    <div class="step-label">Check Strength</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-circle">03</div>
+                    <div class="step-label">Check Breach</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-circle">04</div>
+                    <div class="step-label">Generate New</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-circle">05</div>
+                    <div class="step-label">Copy &amp; Use</div>
+                </div>
+            </div>
+
+            <!-- Accordion Sections -->
+            <div class="accordion-list">
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🛡️ About This Tool
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>This tool was built as a <span class="acc-highlight">Group 4 assignment project</span> for the Department of Cyber Security, Federal University Dutse (FUD), 200 Level. It is a free, browser-based security toolkit that helps everyday users build stronger passwords and stay safe online.</p>
+                        <p style="margin-top:10px;">No account is needed. No data is stored. Everything runs privately inside your browser.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🔐 Password Strength Checker
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Type any password into the checker box. The tool instantly analyses it against <span class="acc-highlight">4 requirements</span>:</p>
+                        <ul>
+                            <li>At least <span class="acc-highlight">8 characters</span> long</li>
+                            <li>Contains at least one <span class="acc-highlight">number (0–9)</span></li>
+                            <li>Contains at least one <span class="acc-highlight">symbol</span> (!@#$%^&*)</li>
+                            <li>Contains both <span class="acc-highlight">uppercase and lowercase</span> letters</li>
+                        </ul>
+                        <p style="margin-top:10px;">Each requirement met adds to the score. The meter fills from <span class="acc-danger">Weak</span> → <span class="acc-warn">Medium</span> → <span class="acc-warn">Strong</span> → <span class="acc-highlight">Unbreakable</span>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        ⏱️ Crack Time Estimator
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>The crack time shows how long it would take a powerful computer making <span class="acc-highlight">100 billion guesses per second</span> to brute-force your password.</p>
+                        <p style="margin-top:10px;">It calculates this by looking at your password's character set size and length — the longer and more varied the password, the <span class="acc-good">longer it takes to crack</span>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        ☠️ Breach Detection (HaveIBeenPwned)
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>After you stop typing, the tool checks your password against a database of <span class="acc-danger">billions of leaked passwords</span> from real data breaches.</p>
+                        <p style="margin-top:10px;"><span class="acc-good">Your privacy is protected</span> — the full password is never sent. Instead, only the first 5 characters of a scrambled hash are sent. This is called the <span class="acc-highlight">k-anonymity model</span>.</p>
+                        <p style="margin-top:10px;">If your password is found, <span class="acc-danger">stop using it immediately</span> on all your accounts.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        ⚙️ Passphrase Generator
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Can't think of a strong password? Let the generator create one for you:</p>
+                        <ul>
+                            <li>Adjust the <span class="acc-highlight">word count slider</span> (2–6 words)</li>
+                            <li>Toggle <span class="acc-highlight">Numbers</span> and <span class="acc-highlight">Symbols</span> on or off</li>
+                            <li>Click <span class="acc-highlight">Generate</span> to create a new passphrase</li>
+                            <li>Click <span class="acc-highlight">Copy</span> to copy it to your clipboard</li>
+                        </ul>
+                        <p style="margin-top:10px;">Passphrases like <span class="acc-highlight">Quantum-Shield-42!</span> are much stronger than single-word passwords.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🔒 Privacy &amp; Safety Notice
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>We <span class="acc-good">never store, log, or transmit</span> your full password. All strength checks happen locally inside your browser. The breach check only sends a partial hash — your actual password never leaves your device.</p>
+                        <p style="margin-top:10px;">This tool is safe to use on any device. You do not need to create an account or provide any personal information.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        ⚠️ Common Password Mistakes
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Avoid these common mistakes that make passwords easy to crack:</p>
+                        <ul>
+                            <li>Using your <span class="acc-danger">name, birthday, or phone number</span></li>
+                            <li>Simple substitutions like <span class="acc-danger">P@ssw0rd</span> — still weak!</li>
+                            <li><span class="acc-danger">Reusing</span> the same password on multiple sites</li>
+                            <li>Using only <span class="acc-danger">dictionary words</span> alone</li>
+                            <li>Passwords <span class="acc-danger">shorter than 12 characters</span></li>
+                            <li>Sharing passwords via <span class="acc-danger">WhatsApp or email</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🕵️ What Hackers Actually Do
+                        <span class="accordion-icon">+</span>
+                         </button>
+                    <div class="accordion-body">
+                        <p>Understanding attack methods helps you defend against them:</p>
+                        <ul>
+                            <li><span class="acc-danger">Brute Force</span> — trying every possible combination until one works</li>
+                            <li><span class="acc-danger">Dictionary Attack</span> — using lists of common words and passwords</li>
+                            <li><span class="acc-danger">Credential Stuffing</span> — using leaked username/password pairs from other breaches</li>
+                            <li><span class="acc-danger">Phishing</span> — tricking you into typing your password on a fake site</li>
+                        </ul>
+                        <p style="margin-top:10px;">A long, unique, symbol-rich password defeats brute force and dictionary attacks completely.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        💡 Pro Tips
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Use a <span class="acc-highlight">passphrase</span> instead of a single word — longer is stronger</li>
+                            <li>Enable <span class="acc-highlight">2FA (Two-Factor Authentication)</span> on every account you can</li>
+                            <li>Use a <span class="acc-highlight">password manager</span> app to store unique passwords safely</li>
+                            <li>Never enter passwords on <span class="acc-warn">public Wi-Fi</span> without a VPN</li>
+                            <li>Change your most important passwords <span class="acc-highlight">every 3–6 months</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🧪 Test Scenarios — See the Difference
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Here are 3 example passwords and why they score the way they do:</p>
+                        <ul>
+                            <li><span class="acc-danger">john1990</span> → <span class="acc-danger">Weak</span> — no symbols, no uppercase, uses a name and year</li>
+                            <li><span class="acc-warn">Rocket@99</span> → <span class="acc-warn">Strong</span> — has uppercase, symbol and number but only 9 chars</li>
+                            <li><span class="acc-good">Quantum-Shield-42!</span> → <span class="acc-good">Unbreakable</span> — long, mixed case, symbol, number</li>
+                        </ul>
+                        <p style="margin-top:10px;">Close this guide and try typing each one into the checker to see it live!</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🏆 Password Hall of Shame
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>These are the world's most commonly leaked passwords. <span class="acc-danger">Never use them.</span> Click "Test This" to see how badly they score:</p>
+                        <div class="shame-list">
+                            <div class="shame-item">
+                                <span class="shame-pw">123456</span>
+                                <span class="shame-badge">⚠️ #1 Most Leaked</span>
+                                <button class="shame-test-btn" onclick="testShamePassword('123456')">Test This</button>
+                            </div>
+                            <div class="shame-item">
+                                <span class="shame-pw">password</span>
+                                <span class="shame-badge">⚠️ #2 Most Leaked</span>
+                                <button class="shame-test-btn" onclick="testShamePassword('password')">Test This</button>
+                            </div>
+                            <div class="shame-item">
+                                <span class="shame-pw">qwerty</span>
+                                <span class="shame-badge">⚠️ #3 Most Leaked</span>
+                                <button class="shame-test-btn" onclick="testShamePassword('qwerty')">Test This</button>
+                            </div>
+                            <div class="shame-item">
+                                <span class="shame-pw">admin</span>
+                                <span class="shame-badge">⚠️ Very Common</span>
+                                <button class="shame-test-btn" onclick="testShamePassword('admin')">Test This</button>
+                            </div>
+                            <div class="shame-item">
+                                <span class="shame-pw">iloveyou</span>
+                                <span class="shame-badge">⚠️ Very Common</span>
+                                <button class="shame-test-btn" onclick="testShamePassword('iloveyou')">Test This</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        🏆 Cybersecurity Glossary
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="glossary-list">
+                            <div class="glossary-item">
+                                <div class="glossary-term">Breach</div>
+                                <div class="glossary-def">When a company's user database is stolen by hackers and exposed publicly.</div>
+                            </div>
+                            <div class="glossary-item">
+                                <div class="glossary-term">Hash</div>
+                                <div class="glossary-def">A scrambled, one-way fingerprint of your password. Cannot be reversed into the original.</div>
+                            </div>
+                            <div class="glossary-item">
+                                <div class="glossary-term">Entropy</div>
+                                <div class="glossary-def">A measure of how unpredictable a password is. More entropy = harder to crack.</div>
+                            </div>
+                            <div class="glossary-item">
+                                <div class="glossary-term">2FA</div>
+                                <div class="glossary-def">Two-Factor Authentication — a second verification step (e.g. SMS code) beyond just a password.</div>
+                            </div>
+                            <div class="glossary-item">
+                                <div class="glossary-term">Credential Stuffing</div>
+                                <div class="glossary-def">Using leaked username/password pairs to try to log into other unrelated websites.</div>
+                            </div>
+                            <div class="glossary-item">
+                                <div class="glossary-term">Brute Force</div>
+                                <div class="glossary-def">An attack that tries every possible password combination until the correct one is found.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        📅 Password Maintenance Schedule
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <table class="schedule-table">
+                            <tr><th>Account Type</th><th>Change Every</th></tr>
+                            <tr><td>Banking / Finance</td><td><span class="acc-danger">1 Month</span></td></tr>
+                            <tr><td>Email</td><td><span class="acc-warn">3 Months</span></td></tr>
+                            <tr><td>Social Media</td><td><span class="acc-warn">3 Months</span></td></tr>
+                            <tr><td>School Accounts</td><td><span class="acc-highlight">Every Semester</span></td></tr>
+                            <tr><td>Shopping Sites</td><td><span class="acc-highlight">6 Months</span></td></tr>
+                            <tr><td>Work / Office</td><td><span class="acc-danger">1–2 Months</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                        📱 Device Security Tips
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Lock your phone with a <span class="acc-highlight">strong PIN</span>, not just fingerprint alone</li>
+                            <li>Don't save passwords in browsers on <span class="acc-warn">shared computers</span></li>
+                            <li>Enable <span class="acc-highlight">screen auto-lock</span> after 30 seconds of inactivity</li>
+                            <li>Keep your apps and OS <span class="acc-highlight">updated</span> — patches fix security holes</li>
+                            <li>Only download apps from <span class="acc-highlight">official stores</span> (Play Store / App Store)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- end accordion-list -->
+        </div><!-- end overlay-body -->
+    </div>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -1450,5 +2094,4 @@
             <p><em>Developed by:</em> 200 Level Students &nbsp;|&nbsp; Federal University Dutse</p>
             <p><em>Group Registration Number:</em> 61&ndash;80</p>
 
-            
-        
+    
